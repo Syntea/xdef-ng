@@ -1,0 +1,24 @@
+dist: xenial
+language: java
+
+jdk:
+  - openjdk8
+  - oraclejdk8
+
+cache:
+  directories:
+    - $HOME/.m2
+
+stages:
+  - compile
+  - test
+  - build
+
+jobs:
+  include:
+    - stage: compile
+      script: mvn compile
+    - stage: test
+      script: mvn test
+    - stage: build
+      script: mvn package

@@ -1,0 +1,25 @@
+image: mcr.microsoft.com/java/maven:8u202-zulu-debian9
+
+cache:
+  paths:
+    - $HOME/.m2
+
+stages:
+  - compile
+  - test
+  - build
+
+compile:
+  stage: compile
+  script:
+    - mvn compile
+
+test:
+  stage: test
+  script:
+    - mvn test
+
+build:
+  stage: build
+  script:
+    - mvn package
