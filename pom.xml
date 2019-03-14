@@ -8,7 +8,14 @@
     <groupId>cz.syntea.xdef</groupId>
     <artifactId>parent</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <modules>
+        <module>xdef</module>
+        <module>core</module>
+        <module>translator</module>
+        <module>compiler</module>
+        <module>runtime</module>
+        <module>xscript-api</module>
+    </modules>
     <packaging>pom</packaging>
 
     <name>x-definition (Parent)</name>
