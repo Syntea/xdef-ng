@@ -2,7 +2,7 @@ image: mcr.microsoft.com/java/maven:8u202-zulu-debian9
 
 cache:
   paths:
-    - $HOME/.m2
+    - $HOME/.m2/
 
 stages:
   - compile
@@ -23,3 +23,8 @@ build:
   stage: build
   script:
     - mvn package
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - xdef/target/*.jar
+      - xscript-api/target/*.jar
