@@ -1,8 +1,11 @@
 image: mcr.microsoft.com/java/maven:8u202-zulu-debian9
 
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2/"
+
 cache:
   paths:
-    - $HOME/.m2/
+    - .m2/
 
 stages:
   - compile
