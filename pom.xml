@@ -18,7 +18,7 @@
     </modules>
     <packaging>pom</packaging>
 
-    <name>x-definition (Parent)</name>
+    <name>X-definition (Parent)</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
