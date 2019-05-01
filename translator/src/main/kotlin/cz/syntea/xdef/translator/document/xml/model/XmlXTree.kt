@@ -4,6 +4,7 @@ import cz.syntea.xdef.core.Localizable
 import cz.syntea.xdef.core.Location
 import cz.syntea.xdef.core.document.data.XLeaf
 import cz.syntea.xdef.core.document.data.XNode
+import org.jdom2.Element
 import org.jdom2.located.LocatedElement
 import org.jdom2.located.LocatedText
 
@@ -13,7 +14,7 @@ import org.jdom2.located.LocatedText
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 class XmlXNode(
-    internal val element: LocatedElement
+    internal val element: Element
 ) : XNode(
     name = element.qualifiedName,
     attributes = element.attributes.map { XmlXAttribute(name = it.qualifiedName, value = XmlTextXValue(it.value)) },
@@ -28,7 +29,7 @@ class XmlXNode(
             else -> throw IllegalArgumentException("Missing specified type: ${child::class.simpleName}")
         }
     },
-    location = Location(element.line, element.column)
+    location = if (element is LocatedElement) Location(element.line, element.column) else Location.NO_LOCATION
 )
 
 class XmlXLeaf(

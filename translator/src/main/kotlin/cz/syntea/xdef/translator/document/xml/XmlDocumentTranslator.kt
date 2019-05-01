@@ -37,9 +37,10 @@ class XmlDocumentTranslator : DocumentTranslator<Element> {
             .ifEmpty { "__WS__" }
     }
 
-    override fun translate(dom: Element): XDocument {
-        TODO("not implemented")
-    }
+    private val reader = SAXBuilder().apply { jdomFactory = LocatedJDOMFactory() }
+    private val writer = XMLOutputter().apply { format = Format.getPrettyFormat() }
+
+    override fun translate(dom: Element) = translate(Document(dom))
 
     override fun translate(document: XDocument) = translate(document.root)
 
@@ -50,59 +51,29 @@ class XmlDocumentTranslator : DocumentTranslator<Element> {
         }
     }
 
-    //FIXME: Duplicated code
-    override fun readDocument(input: InputStream): XDocument {
-        val document = SAXBuilder()
-            .apply { jdomFactory = LocatedJDOMFactory() }
-            .build(input)
-        return XmlXDocument(document)
-    }
+    override fun readDocument(input: InputStream) = translate(reader.build(input))
 
-    override fun readDocument(input: Reader): XDocument {
-        val document = SAXBuilder()
-            .apply { jdomFactory = LocatedJDOMFactory() }
-            .build(input)
-//        return translate(document.rootElement)
-        return XmlXDocument(document)
-    }
+    override fun readDocument(input: Reader) = translate(reader.build(input))
 
     //FIXME: Duplicated code
     override fun writeDocument(document: XDocument, output: OutputStream) {
-        XMLOutputter()
-            .apply { format = Format.getPrettyFormat() }
-            .output(
-                when (document) {
-                    is XmlXDocument -> document.document //FIXME: Maybe bug
-                    else -> Document(
-                        xTree2Content(document.root).let {
-                            when (it) {
-                                is Element -> it
-                                else -> Element(ROOT_ELEMENT_NAME).addContent(it)
-                            }
-                        }
-                    )
-                },
-                output
-            )
+        writer.output(
+            when (document) {
+                is XmlXDocument -> document.document //FIXME: Maybe bug
+                else -> Document(translate(document.root))
+            },
+            output
+        )
     }
 
     override fun writeDocument(document: XDocument, output: Writer) {
-        XMLOutputter()
-            .apply { format = Format.getPrettyFormat() }
-            .output(
-                when (document) {
-                    is XmlXDocument -> document.document //FIXME: Maybe bug
-                    else -> Document(
-                        xTree2Content(document.root).let {
-                            when (it) {
-                                is Element -> it
-                                else -> Element(ROOT_ELEMENT_NAME).addContent(it)
-                            }
-                        }
-                    )
-                },
-                output
-            )
+        writer.output(
+            when (document) {
+                is XmlXDocument -> document.document //FIXME: Maybe bug
+                else -> Document(translate(document.root))
+            },
+            output
+        )
     }
 
     override fun createTranslationReader(input: InputStream) = XmlXReader(input)
@@ -112,6 +83,8 @@ class XmlDocumentTranslator : DocumentTranslator<Element> {
     override fun createTranslationWriter(output: OutputStream) = XmlXWriter(output)
 
     override fun createTranslationWriter(output: Writer) = XmlXWriter(output)
+
+    private fun translate(document: Document) = XmlXDocument(document)
 
     private fun xTree2Content(tree: XTree): Content {
         return when (tree) {
