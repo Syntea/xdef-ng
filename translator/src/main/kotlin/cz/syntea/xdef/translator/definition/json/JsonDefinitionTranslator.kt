@@ -7,6 +7,8 @@ import cz.syntea.xdef.translator.definition.DefinitionTranslator
 import cz.syntea.xdef.translator.definition.DefinitionTranslatorIO
 import cz.syntea.xdef.translator.definition.json.model.JsonXDefDocument
 import cz.syntea.xdef.translator.document.json.std.LocalizedJsonTree
+import java.io.InputStream
+import java.io.OutputStream
 import java.io.Reader
 import java.io.Writer
 import javax.json.JsonValue
@@ -17,6 +19,13 @@ import javax.json.JsonValue
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 class JsonDefinitionTranslator : DefinitionTranslator<JsonValue>, DefinitionTranslatorIO {
+    override fun readDefinition(input: InputStream): XDefDocument {
+        TODO("not implemented")
+    }
+
+    override fun writeDefinition(definition: XDefDocument, output: OutputStream) {
+        TODO("not implemented")
+    }
 
     companion object {
         const val ROOT_NODE_NAME = "cz.syntea.xdef.root"

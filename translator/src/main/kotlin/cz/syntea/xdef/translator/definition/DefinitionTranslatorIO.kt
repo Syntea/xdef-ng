@@ -1,6 +1,8 @@
 package cz.syntea.xdef.translator.definition
 
 import cz.syntea.xdef.core.document.definition.XDefDocument
+import java.io.InputStream
+import java.io.OutputStream
 import java.io.Reader
 import java.io.Writer
 
@@ -16,7 +18,20 @@ interface DefinitionTranslatorIO {
      *
      * @return
      */
+    fun readDefinition(input: InputStream): XDefDocument
+
+    /**
+     * @param input
+     *
+     * @return
+     */
     fun readDefinition(input: Reader): XDefDocument
+
+    /**
+     * @param definition
+     * @param output
+     */
+    fun writeDefinition(definition: XDefDocument, output: OutputStream)
 
     /**
      * @param definition

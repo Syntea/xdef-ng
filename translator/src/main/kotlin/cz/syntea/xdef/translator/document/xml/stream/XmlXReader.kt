@@ -7,9 +7,11 @@ import cz.syntea.xdef.core.document.stream.EndDocumentEvent
 import cz.syntea.xdef.core.document.stream.XEvent
 import cz.syntea.xdef.core.document.stream.XReader
 import org.apache.logging.log4j.kotlin.Logging
+import java.io.InputStream
 import java.io.Reader
 import java.util.*
 import javax.xml.stream.XMLEventFactory
+import javax.xml.stream.XMLEventReader
 import javax.xml.stream.XMLInputFactory
 import javax.xml.stream.XMLStreamConstants
 import javax.xml.stream.events.Attribute
@@ -20,12 +22,12 @@ import javax.xml.stream.events.StartDocument
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
-class XmlXReader(reader: Reader) : XReader, Logging {
+class XmlXReader private constructor(private val reader: XMLEventReader) : XReader, Logging {
 
-    private val inputFactory = XMLInputFactory.newFactory()
+    constructor(input: InputStream) : this(XMLInputFactory.newFactory().createXMLEventReader(input))
+    constructor(input: Reader) : this(XMLInputFactory.newFactory().createXMLEventReader(input))
+
     private val eventFactory = XMLEventFactory.newFactory()
-    private val reader = inputFactory.createXMLEventReader(reader)
-
     private val processedAttributes = LinkedList<AttributeEvent>()
 
     private var peekedEvent: XEvent? = null

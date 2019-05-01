@@ -5,7 +5,9 @@ import com.sun.xml.internal.stream.events.CharacterEvent
 import com.sun.xml.internal.stream.events.EndElementEvent
 import com.sun.xml.internal.stream.events.StartElementEvent
 import cz.syntea.xdef.core.document.stream.*
+import java.io.OutputStream
 import java.io.Writer
+import javax.xml.stream.XMLEventWriter
 import javax.xml.stream.XMLOutputFactory
 
 /**
@@ -13,10 +15,10 @@ import javax.xml.stream.XMLOutputFactory
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
-class XmlXWriter(writer: Writer) : XWriter {
+class XmlXWriter private constructor(private val writer: XMLEventWriter) : XWriter {
 
-    private val outputFactory = XMLOutputFactory.newFactory()
-    private val writer = outputFactory.createXMLEventWriter(writer)
+    constructor(output: OutputStream) : this(XMLOutputFactory.newFactory().createXMLEventWriter(output))
+    constructor(output: Writer) : this(XMLOutputFactory.newFactory().createXMLEventWriter(output))
 
     override fun writeEvent(event: XEvent) {
         when (event) {

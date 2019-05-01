@@ -3,6 +3,8 @@ package cz.syntea.xdef.translator.document
 import cz.syntea.xdef.core.document.data.XDocument
 import cz.syntea.xdef.core.document.stream.XReader
 import cz.syntea.xdef.core.document.stream.XWriter
+import java.io.InputStream
+import java.io.OutputStream
 import java.io.Reader
 import java.io.Writer
 
@@ -17,7 +19,19 @@ interface DocumentTranslatorIO {
      * @param input
      * @return
      */
+    fun readDocument(input: InputStream): XDocument
+
+    /**
+     * @param input
+     * @return
+     */
     fun readDocument(input: Reader): XDocument
+
+    /**
+     * @param document
+     * @param output
+     */
+    fun writeDocument(document: XDocument, output: OutputStream)
 
     /**
      * @param document
@@ -29,7 +43,19 @@ interface DocumentTranslatorIO {
      * @param input
      * @return
      */
+    fun createTranslationReader(input: InputStream): XReader
+
+    /**
+     * @param input
+     * @return
+     */
     fun createTranslationReader(input: Reader): XReader
+
+    /**
+     * @param output
+     * @return
+     */
+    fun createTranslationWriter(output: OutputStream): XWriter
 
     /**
      * @param output

@@ -1,10 +1,12 @@
 package cz.syntea.xdef.translator.document.json.stream
 
 import com.fasterxml.jackson.core.JsonFactory
+import com.fasterxml.jackson.core.JsonGenerator
 import cz.syntea.xdef.core.document.stream.*
 import cz.syntea.xdef.translator.document.json.model.JsonXBoolean
 import cz.syntea.xdef.translator.document.json.model.JsonXNumber
 import org.apache.logging.log4j.kotlin.Logging
+import java.io.OutputStream
 import java.io.Writer
 import java.util.*
 
@@ -13,10 +15,11 @@ import java.util.*
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
-class JsonXWriter(writer: Writer) : XWriter, Logging {
+class JsonXWriter private constructor(private val writer: JsonGenerator) : XWriter, Logging {
 
-    private val factory = JsonFactory()
-    private val writer = factory.createGenerator(writer)
+    constructor(output: OutputStream) : this(JsonFactory().createGenerator(output))
+    constructor(output: Writer) : this(JsonFactory().createGenerator(output))
+
     private val structureStack = Stack<JsonStructure>()
 
     override fun writeEvent(event: XEvent) {

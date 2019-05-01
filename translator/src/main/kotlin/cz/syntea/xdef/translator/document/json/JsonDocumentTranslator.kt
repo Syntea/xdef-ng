@@ -1,6 +1,8 @@
 package cz.syntea.xdef.translator.document.json
 
 import com.fasterxml.jackson.core.JsonFactory
+import com.fasterxml.jackson.core.JsonGenerator
+import com.fasterxml.jackson.core.JsonParser
 import cz.syntea.xdef.core.Localizable
 import cz.syntea.xdef.core.Location
 import cz.syntea.xdef.core.document.data.*
@@ -11,6 +13,8 @@ import cz.syntea.xdef.translator.document.json.std.*
 import cz.syntea.xdef.translator.document.json.stream.JsonXReader
 import cz.syntea.xdef.translator.document.json.stream.JsonXWriter
 import org.apache.logging.log4j.kotlin.Logging
+import java.io.InputStream
+import java.io.OutputStream
 import java.io.Reader
 import java.io.Writer
 import javax.json.JsonNumber
@@ -35,22 +39,35 @@ class JsonDocumentTranslator : DocumentTranslator<JsonValue>, Logging {
 
     override fun translate(document: XDocument) = xTree2JsonValue(document.root)
 
-    override fun readDocument(input: Reader): XDocument {
-        val jsonValue = LocalizedJsonTree.readTree(factory.createParser(input))
-        return translate(requireNotNull(jsonValue) { "Parsed document is empty" })
-    }
+    override fun readDocument(input: InputStream) = readDocument(factory.createParser(input))
 
-    override fun writeDocument(document: XDocument, output: Writer) {
-        val jsonValue = translate(document)
-        val jsonOutputter = factory.createGenerator(output)
-            .useDefaultPrettyPrinter() // TODO: Only debug
-        LocalizedJsonTree.writeTree(jsonOutputter, jsonValue)
-        jsonOutputter.flush()
-    }
+    override fun readDocument(input: Reader) = readDocument(factory.createParser(input))
+
+    override fun writeDocument(document: XDocument, output: OutputStream) =
+        writeDocument(document, factory.createGenerator(output))
+
+    override fun writeDocument(document: XDocument, output: Writer) =
+        writeDocument(document, factory.createGenerator(output))
+
+    override fun createTranslationReader(input: InputStream) = JsonXReader(input)
 
     override fun createTranslationReader(input: Reader) = JsonXReader(input)
 
     override fun createTranslationWriter(output: Writer) = JsonXWriter(output)
+
+    override fun createTranslationWriter(output: OutputStream) = JsonXWriter(output)
+
+    private fun readDocument(reader: JsonParser): XDocument {
+        val jsonValue = LocalizedJsonTree.readTree(reader)
+        return translate(requireNotNull(jsonValue) { "Parsed document is empty" })
+    }
+
+    private fun writeDocument(document: XDocument, writer: JsonGenerator) {
+        val jsonValue = translate(document)
+        writer.useDefaultPrettyPrinter() // TODO: Only debug
+        LocalizedJsonTree.writeTree(writer, jsonValue)
+        writer.flush()
+    }
 
     @Throws(IllegalArgumentException::class)
     private fun jsonValue2XTree(nodeName: String, value: JsonValue): XTree {

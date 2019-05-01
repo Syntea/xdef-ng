@@ -4,6 +4,8 @@ import cz.syntea.xdef.core.document.definition.XDefDocument
 import cz.syntea.xdef.translator.definition.DefinitionTranslator
 import cz.syntea.xdef.translator.definition.DefinitionTranslatorIO
 import org.jdom2.Element
+import java.io.InputStream
+import java.io.OutputStream
 import java.io.Reader
 import java.io.Writer
 
@@ -22,12 +24,15 @@ class XmlDefinitionTranslator : DefinitionTranslator<Element>, DefinitionTransla
         TODO("not implemented")
     }
 
-    override fun readDefinition(input: Reader): XDefDocument {
-//        org.jdom2.input.StAXStreamBuilder
-//        JsonFactory().createParser("").also {
-//            while (it.nextToken() != JsonToken.END_ARRAY)
-//        }
+    override fun readDefinition(input: InputStream): XDefDocument {
+        TODO("not implemented")
+    }
 
+    override fun readDefinition(input: Reader): XDefDocument {
+        TODO("not implemented")
+    }
+
+    override fun writeDefinition(definition: XDefDocument, output: OutputStream) {
         TODO("not implemented")
     }
 

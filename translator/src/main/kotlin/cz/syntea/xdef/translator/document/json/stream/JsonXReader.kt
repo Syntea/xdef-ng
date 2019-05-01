@@ -1,6 +1,7 @@
 package cz.syntea.xdef.translator.document.json.stream
 
 import com.fasterxml.jackson.core.JsonFactory
+import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.core.JsonToken
 import cz.syntea.xdef.core.Location
 import cz.syntea.xdef.core.document.stream.*
@@ -10,6 +11,7 @@ import cz.syntea.xdef.translator.document.json.model.JsonXBoolean
 import cz.syntea.xdef.translator.document.json.model.JsonXNumber
 import cz.syntea.xdef.translator.document.json.model.JsonXString
 import cz.syntea.xdef.translator.peekOrNull
+import java.io.InputStream
 import java.io.Reader
 import java.math.BigDecimal
 import java.util.*
@@ -19,10 +21,10 @@ import java.util.*
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
-class JsonXReader(reader: Reader) : XReader {
+class JsonXReader private constructor(private val reader: JsonParser) : XReader {
 
-    private val factory = JsonFactory()
-    private val reader = factory.createParser(reader)
+    constructor(input: InputStream) : this(JsonFactory().createParser(input))
+    constructor(input: Reader) : this(JsonFactory().createParser(input))
 
     //TODO Maybe used low-level array
     private val nameStack = Stack<String>()
