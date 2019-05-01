@@ -1,5 +1,6 @@
 package cz.syntea.xdef.core.definition
 
+import cz.syntea.xdef.core.XScriptInfo
 import java.io.Serializable
 
 /**
@@ -8,7 +9,14 @@ import java.io.Serializable
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 data class XDefinition(
-//    val scriptInfo: XScriptInfo,
-//    val factory: XTreeFactory,
+
+    /**
+     * Information about XScript which was used by compilation
+     */
+    val scriptInfo: XScriptInfo,
+
+    /**
+     * Root of tree which represents compiled X-definition
+     */
     val root: XDefinitionTree
 ) : Serializable
