@@ -10,7 +10,7 @@ import cz.syntea.xdef.core.Localizable
  */
 open class XAttribute(
     override val name: String,
-    override val value: XValue?,
+    override var value: XValue?,
     override val lineNumber: Int,
     override val columnNumber: Int
 ) : Attribute<XValue>, Localizable

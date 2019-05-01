@@ -23,8 +23,8 @@ sealed class XTree(
  */
 open class XNode(
     name: String,
-    override val attributes: List<XAttribute>,
-    override val children: List<XTree>,
+    override var attributes: List<XAttribute>,
+    override var children: List<XTree>,
     location: Localizable
 ) : XTree(name, location), Node<XAttribute, XTree>
 
@@ -33,6 +33,6 @@ open class XNode(
  */
 open class XLeaf(
     name: String,
-    override val value: XValue?,
+    override var value: XValue?,
     location: Localizable
 ) : XTree(name, location), Leaf<XValue>
