@@ -14,7 +14,7 @@ data class LocalizedJsonNull(
     override val columnNumber: Int
 ) : JsonValue, Localizable {
 
-    constructor(value: Boolean) : this(Location.NO_LOCATION.lineNumber, Location.NO_LOCATION.columnNumber)
+    constructor() : this(Location.NO_LOCATION.lineNumber, Location.NO_LOCATION.columnNumber)
 
     override fun getValueType() = JsonValue.ValueType.NULL
 
