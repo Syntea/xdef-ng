@@ -35,8 +35,8 @@ class XmlXDefNode(
             else -> throw IllegalArgumentException("Missing specified type: ${child::class.simpleName}")
         }
     },
-    allowedOccurrence = listOf(), // TODO Determine it
-    allowedEvent = listOf(), // TODO Determine it
+    allowedOccurrences = listOf(), // TODO Determine it
+    allowedEvents = listOf(), // TODO Determine it
     location = Location(element.line, element.column)
 )
 

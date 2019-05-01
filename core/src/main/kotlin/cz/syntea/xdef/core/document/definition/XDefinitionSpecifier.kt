@@ -9,6 +9,6 @@ import cz.syntea.xdef.core.lang.Occurrence
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 interface XDefinitionSpecifier {
-    val allowedOccurrence: List<Occurrence>
-    val allowedEvent: List<Event>
+    val allowedOccurrences: List<Occurrence>
+    val allowedEvents: List<Event>
 }

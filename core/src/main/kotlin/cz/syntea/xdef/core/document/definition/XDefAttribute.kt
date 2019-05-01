@@ -15,8 +15,8 @@ import cz.syntea.xdef.core.lang.Occurrence
 open class XDefAttribute(
     name: String,
     value: XValue?,
-    override val allowedOccurrence: List<Occurrence>,
-    override val allowedEvent: List<Event>,
+    override val allowedOccurrences: List<Occurrence>,
+    override val allowedEvents: List<Event>,
     location: Localizable
 ) : LocalizedXAttribute(name, value, location), XDefinitionSpecifier, Scriptable {
 

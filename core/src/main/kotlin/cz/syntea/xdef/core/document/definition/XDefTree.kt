@@ -16,8 +16,8 @@ import cz.syntea.xdef.core.lang.Occurrence
  */
 sealed class XDefTree(
     override val name: String,
-    override val allowedOccurrence: List<Occurrence>,
-    override val allowedEvent: List<Event>,
+    override val allowedOccurrences: List<Occurrence>,
+    override val allowedEvents: List<Event>,
     location: Location
 ) : XDefinitionSpecifier, Scriptable, Localizable, Tree {
     override val lineNumber = location.lineNumber
@@ -32,10 +32,10 @@ open class XDefNode(
     override val script: String?,
     override val attributes: List<XDefAttribute>,
     override val children: List<XDefTree>,
-    allowedOccurrence: List<Occurrence>,
-    allowedEvent: List<Event>,
+    allowedOccurrences: List<Occurrence>,
+    allowedEvents: List<Event>,
     location: Location
-) : XDefTree(name, allowedOccurrence, allowedEvent, location), Node<XDefAttribute, XDefTree>
+) : XDefTree(name, allowedOccurrences, allowedEvents, location), Node<XDefAttribute, XDefTree>
 
 /**
  *
@@ -43,10 +43,10 @@ open class XDefNode(
 open class XDefLeaf(
     name: String,
     override val value: XValue?,
-    allowedOccurrence: List<Occurrence>,
-    allowedEvent: List<Event>,
+    allowedOccurrences: List<Occurrence>,
+    allowedEvents: List<Event>,
     location: Location
-) : XDefTree(name, allowedOccurrence, allowedEvent, location), Leaf<XValue> {
+) : XDefTree(name, allowedOccurrences, allowedEvents, location), Leaf<XValue> {
 
     override val script get() = value?.toString()
 }

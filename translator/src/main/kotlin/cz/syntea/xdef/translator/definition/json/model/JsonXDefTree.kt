@@ -23,10 +23,10 @@ sealed class JsonXDefNode(
     script: String?,
     attributes: List<XDefAttribute>,
     children: List<XDefTree>,
-    allowedOccurrence: List<Occurrence>,
-    allowedEvent: List<Event>,
+    allowedOccurrences: List<Occurrence>,
+    allowedEvents: List<Event>,
     location: Location
-) : XDefNode(name, script, attributes, children, allowedOccurrence, allowedEvent, location)
+) : XDefNode(name, script, attributes, children, allowedOccurrences, allowedEvents, location)
 
 /**
  *
@@ -36,10 +36,10 @@ class JsonObjectXDefNode(
     script: String?,
     attributes: List<XDefAttribute>,
     children: List<XDefTree>,
-    allowedOccurrence: List<Occurrence>,
-    allowedEvent: List<Event>,
+    allowedOccurrences: List<Occurrence>,
+    allowedEvents: List<Event>,
     location: Location
-) : JsonXDefNode(name, script, attributes, children, allowedOccurrence, allowedEvent, location)
+) : JsonXDefNode(name, script, attributes, children, allowedOccurrences, allowedEvents, location)
 
 /**
  *
@@ -48,10 +48,10 @@ class JsonArrayXDefNode(
     name: String,
     script: String?,
     children: List<XDefTree>,
-    allowedOccurrence: List<Occurrence>,
-    allowedEvent: List<Event>,
+    allowedOccurrences: List<Occurrence>,
+    allowedEvents: List<Event>,
     location: Location
-) : JsonXDefNode(name, script, emptyList(), children, allowedOccurrence, allowedEvent, location)
+) : JsonXDefNode(name, script, emptyList(), children, allowedOccurrences, allowedEvents, location)
 
 /**
  *
@@ -59,7 +59,7 @@ class JsonArrayXDefNode(
 class JsonXDefLeaf(
     name: String,
     value: JsonXValue<*>?,
-    allowedOccurrence: List<Occurrence>,
-    allowedEvent: List<Event>,
+    allowedOccurrences: List<Occurrence>,
+    allowedEvents: List<Event>,
     location: Location
-) : XDefLeaf(name, value, allowedOccurrence, allowedEvent, location)
+) : XDefLeaf(name, value, allowedOccurrences, allowedEvents, location)
