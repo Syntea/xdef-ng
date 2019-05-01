@@ -17,7 +17,7 @@ interface Compiler {
      *
      * @return
      */
-    fun compile(reporter: Appendable, vararg definitions: XDefDocument): XDPool
+    fun compile(reporter: Appendable, definitions: List<XDefDocument>): XDPool
 
     /**
      * @param pool
