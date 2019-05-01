@@ -29,4 +29,6 @@ data class LocalizedJsonString(
     override fun getValueType(): JsonValue.ValueType {
         return JsonValue.ValueType.STRING
     }
+
+    override fun toString() = value
 }

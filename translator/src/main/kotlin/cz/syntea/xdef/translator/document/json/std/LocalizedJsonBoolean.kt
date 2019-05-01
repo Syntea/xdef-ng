@@ -23,4 +23,6 @@ data class LocalizedJsonBoolean(
             false -> JsonValue.ValueType.FALSE
         }
     }
+
+    override fun toString() = value.toString()
 }

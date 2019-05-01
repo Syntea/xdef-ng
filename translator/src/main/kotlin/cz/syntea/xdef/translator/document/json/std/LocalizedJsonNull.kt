@@ -17,4 +17,6 @@ data class LocalizedJsonNull(
     constructor(value: Boolean) : this(Location.NO_LOCATION.lineNumber, Location.NO_LOCATION.columnNumber)
 
     override fun getValueType() = JsonValue.ValueType.NULL
+
+    override fun toString() = null.toString()
 }

@@ -61,4 +61,6 @@ data class LocalizedJsonNumber(
     override fun getValueType(): JsonValue.ValueType {
         return JsonValue.ValueType.NUMBER
     }
+
+    override fun toString() = number
 }
