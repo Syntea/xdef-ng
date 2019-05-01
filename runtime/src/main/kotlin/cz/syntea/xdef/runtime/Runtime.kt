@@ -40,7 +40,7 @@ interface Runtime {
      *
      * @return
      */
-    fun create(definition: XDefinition, input: XTree, output: XWriter?, reporter: Appendable): XTree
+    fun create(definition: XDefinition, input: XTree?, output: XWriter?, reporter: Appendable): XTree
 
     /**
      * @param definition
@@ -50,5 +50,5 @@ interface Runtime {
      *
      * @return
      */
-    fun create(definition: XDefinition, input: XReader, output: XWriter?, reporter: Appendable): XTree
+    fun create(definition: XDefinition, input: XReader?, output: XWriter?, reporter: Appendable): XTree
 }
