@@ -37,7 +37,9 @@ class JsonDocumentTranslator : DocumentTranslator<JsonValue>, Logging {
 
     override fun translate(dom: JsonValue) = JsonXDocument(jsonValue2XTree(ROOT_NODE_NAME, dom))
 
-    override fun translate(document: XDocument) = xTree2JsonValue(document.root)
+    override fun translate(document: XDocument) = translate(document.root)
+
+    override fun translate(documentTree: XTree) = xTree2JsonValue(documentTree)
 
     override fun readDocument(input: InputStream) = readDocument(factory.createParser(input))
 

@@ -1,6 +1,7 @@
 package cz.syntea.xdef.translator
 
 import cz.syntea.xdef.core.document.data.XDocument
+import cz.syntea.xdef.core.document.data.XTree
 import cz.syntea.xdef.core.document.definition.XDefDocument
 import cz.syntea.xdef.translator.definition.DefinitionTranslatorIO
 import cz.syntea.xdef.translator.definition.json.JsonDefinitionTranslator
@@ -25,6 +26,8 @@ class JsonTranslator : DocumentTranslator<JsonValue>, DefinitionTranslatorIO {
     override fun translate(dom: JsonValue) = documentTranslator.translate(dom)
 
     override fun translate(document: XDocument) = documentTranslator.translate(document)
+
+    override fun translate(documentTree: XTree) = documentTranslator.translate(documentTree)
 
     override fun readDocument(input: InputStream) = documentTranslator.readDocument(input)
 

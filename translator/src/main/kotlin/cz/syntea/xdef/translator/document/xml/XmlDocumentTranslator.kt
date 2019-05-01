@@ -41,8 +41,10 @@ class XmlDocumentTranslator : DocumentTranslator<Element> {
         TODO("not implemented")
     }
 
-    override fun translate(document: XDocument): Element {
-        return when (val content = xTree2Content(document.root)) {
+    override fun translate(document: XDocument) = translate(document.root)
+
+    override fun translate(documentTree: XTree): Element {
+        return when (val content = xTree2Content(documentTree)) {
             is Element -> content
             else -> Element(ROOT_ELEMENT_NAME).addContent(content)
         }
