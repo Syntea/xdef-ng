@@ -16,7 +16,8 @@ import javax.json.JsonValue
     "MemberVisibilityCanBePrivate",
     "unused"
 )
-abstract class BaseXDefinition(protected val translatorFactory: TranslatorFactory) {
+abstract class BaseXDef(protected val translatorFactory: TranslatorFactory) {
+
     protected val xmlTranslator: XmlTranslator by lazy { translatorFactory.createXmlTranslator() }
 
     protected val jsonTranslator: JsonTranslator by lazy { translatorFactory.createJsonTranslator() }
@@ -57,6 +58,42 @@ abstract class BaseXDefinition(protected val translatorFactory: TranslatorFactor
         to: DocumentTranslator<T>
     ): T
 
+    protected abstract fun <F, T> create(
+        xDefName: String,
+        input: InputStream?,
+        output: OutputStream? = null,
+        reporter: Appendable = System.out,
+        from: DocumentTranslator<F>,
+        to: DocumentTranslator<T>
+    ): T
+
+    protected abstract fun <F, T> create(
+        xDefName: String,
+        input: Reader?,
+        output: Writer? = null,
+        reporter: Appendable = System.out,
+        from: DocumentTranslator<F>,
+        to: DocumentTranslator<T>
+    ): T
+
+    protected abstract fun <F, T> create(
+        xDefName: String,
+        input: F?,
+        output: OutputStream? = null,
+        reporter: Appendable = System.out,
+        from: DocumentTranslator<F>,
+        to: DocumentTranslator<T>
+    ): T
+
+    protected abstract fun <F, T> create(
+        xDefName: String,
+        input: F?,
+        output: Writer? = null,
+        reporter: Appendable = System.out,
+        from: DocumentTranslator<F>,
+        to: DocumentTranslator<T>
+    ): T
+
     fun parseXMLtoXML(
         xDefName: String,
         input: InputStream,
@@ -168,4 +205,116 @@ abstract class BaseXDefinition(protected val translatorFactory: TranslatorFactor
         output: Writer? = null,
         reporter: Appendable = System.out
     ) = parse(xDefName, input, output, reporter, jsonTranslator, jsonTranslator)
+
+    fun createXMLtoXML(
+        xDefName: String,
+        input: InputStream?,
+        output: OutputStream? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, xmlTranslator, xmlTranslator)
+
+    fun createXMLtoXML(
+        xDefName: String,
+        input: Reader?,
+        output: Writer? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, xmlTranslator, xmlTranslator)
+
+    fun createXMLtoXML(
+        xDefName: String,
+        input: Element?,
+        output: OutputStream? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, xmlTranslator, xmlTranslator)
+
+    fun createXMLtoXML(
+        xDefName: String,
+        input: Element?,
+        output: Writer? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, xmlTranslator, xmlTranslator)
+
+    fun createXMLtoJSON(
+        xDefName: String,
+        input: InputStream?,
+        output: OutputStream? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, xmlTranslator, jsonTranslator)
+
+    fun createXMLtoJSON(
+        xDefName: String,
+        input: Reader?,
+        output: Writer? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, xmlTranslator, jsonTranslator)
+
+    fun createXMLtoJSON(
+        xDefName: String,
+        input: Element?,
+        output: OutputStream? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, xmlTranslator, jsonTranslator)
+
+    fun createXMLtoJSON(
+        xDefName: String,
+        input: Element?,
+        output: Writer? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, xmlTranslator, jsonTranslator)
+
+    fun createJSONtoXML(
+        xDefName: String,
+        input: InputStream?,
+        output: OutputStream? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, jsonTranslator, xmlTranslator)
+
+    fun createJSONtoXML(
+        xDefName: String,
+        input: Reader?,
+        output: Writer? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, jsonTranslator, xmlTranslator)
+
+    fun createJSONtoXML(
+        xDefName: String,
+        input: JsonValue?,
+        output: OutputStream? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, jsonTranslator, xmlTranslator)
+
+    fun createJSONtoXML(
+        xDefName: String,
+        input: JsonValue?,
+        output: Writer? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, jsonTranslator, xmlTranslator)
+
+    fun createJSONtoJSON(
+        xDefName: String,
+        input: InputStream?,
+        output: OutputStream? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, jsonTranslator, jsonTranslator)
+
+    fun createJSONtoJSON(
+        xDefName: String,
+        input: Reader?,
+        output: Writer? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, jsonTranslator, jsonTranslator)
+
+    fun createJSONtoJSON(
+        xDefName: String,
+        input: JsonValue?,
+        output: OutputStream? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, jsonTranslator, jsonTranslator)
+
+    fun createJSONtoJSON(
+        xDefName: String,
+        input: JsonValue?,
+        output: Writer? = null,
+        reporter: Appendable = System.out
+    ) = create(xDefName, input, output, reporter, jsonTranslator, jsonTranslator)
 }

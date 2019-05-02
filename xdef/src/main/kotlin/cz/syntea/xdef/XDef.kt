@@ -26,7 +26,7 @@ class XDef(
     private val runtime: Runtime,
     private val sources: XDefinitionSources,
     compile: Boolean = false
-) : BaseXDefinition(translatorFactory), Logging {
+) : BaseXDef(translatorFactory), Logging {
 
     private var pool: XDPool? = null
 
@@ -105,6 +105,86 @@ class XDef(
         val result = runtime.parse(
             definition = definition,
             input = from.translate(input).root,
+            output = output?.let { to.createTranslationWriter(it) },
+            reporter = reporter
+        )
+        return to.translate(result)
+    }
+
+    override fun <F, T> create(
+        xDefName: String,
+        input: InputStream?,
+        output: OutputStream?,
+        reporter: java.lang.Appendable,
+        from: DocumentTranslator<F>,
+        to: DocumentTranslator<T>
+    ): T {
+        val pool = returnOrCompilePool(reporter)
+        val definition = requireNotNull(pool.createXDefinition(xDefName)) { "Definition $xDefName not exist" }
+
+        val result = runtime.create(
+            definition = definition,
+            input = input?.let { from.createTranslationReader(it) },
+            output = output?.let { to.createTranslationWriter(it) },
+            reporter = reporter
+        )
+        return to.translate(result)
+    }
+
+    override fun <F, T> create(
+        xDefName: String,
+        input: Reader?,
+        output: Writer?,
+        reporter: java.lang.Appendable,
+        from: DocumentTranslator<F>,
+        to: DocumentTranslator<T>
+    ): T {
+        val pool = returnOrCompilePool(reporter)
+        val definition = requireNotNull(pool.createXDefinition(xDefName)) { "Definition $xDefName not exist" }
+
+        val result = runtime.create(
+            definition = definition,
+            input = input?.let { from.createTranslationReader(it) },
+            output = output?.let { to.createTranslationWriter(it) },
+            reporter = reporter
+        )
+        return to.translate(result)
+    }
+
+    override fun <F, T> create(
+        xDefName: String,
+        input: F?,
+        output: OutputStream?,
+        reporter: java.lang.Appendable,
+        from: DocumentTranslator<F>,
+        to: DocumentTranslator<T>
+    ): T {
+        val pool = returnOrCompilePool(reporter)
+        val definition = requireNotNull(pool.createXDefinition(xDefName)) { "Definition $xDefName not exist" }
+
+        val result = runtime.create(
+            definition = definition,
+            input = input?.let { from.translate(input).root },
+            output = output?.let { to.createTranslationWriter(it) },
+            reporter = reporter
+        )
+        return to.translate(result)
+    }
+
+    override fun <F, T> create(
+        xDefName: String,
+        input: F?,
+        output: Writer?,
+        reporter: java.lang.Appendable,
+        from: DocumentTranslator<F>,
+        to: DocumentTranslator<T>
+    ): T {
+        val pool = returnOrCompilePool(reporter)
+        val definition = requireNotNull(pool.createXDefinition(xDefName)) { "Definition $xDefName not exist" }
+
+        val result = runtime.create(
+            definition = definition,
+            input = input?.let { from.translate(input).root },
             output = output?.let { to.createTranslationWriter(it) },
             reporter = reporter
         )
