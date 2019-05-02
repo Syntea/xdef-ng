@@ -1,8 +1,10 @@
 package cz.syntea.xdef
 
 import cz.syntea.xdef.compiler.Compiler
+import cz.syntea.xdef.compiler.DummyCompiler
 import cz.syntea.xdef.compiler.XDPool
 import cz.syntea.xdef.core.document.definition.XDefDocument
+import cz.syntea.xdef.runtime.DummyRuntime
 import cz.syntea.xdef.runtime.Runtime
 import cz.syntea.xdef.script.XScriptFactory
 import cz.syntea.xdef.translator.SupportedDataType
@@ -339,8 +341,8 @@ class XDef(
 
             return XDef(
                 translatorFactory = TranslatorFactory(),
-                compiler = cz.syntea.xdef.compiler.impl.Compiler(factory!!),
-                runtime = cz.syntea.xdef.runtime.impl.Runtime(factory!!),
+                compiler = DummyCompiler(factory!!),
+                runtime = DummyRuntime(factory!!),
                 sources = XDefinitionSources(
                     files = files,
                     urls = urls
