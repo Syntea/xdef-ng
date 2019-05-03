@@ -228,7 +228,7 @@ class XDef(
             if (tmpPool != null) {
                 tmpPool
             } else {
-                val tmpPool = compiler.compile(reporter, translateSources(sources))
+                val tmpPool = compiler.compile(translateSources(sources), reporter)
                 pool = tmpPool
                 tmpPool
             }

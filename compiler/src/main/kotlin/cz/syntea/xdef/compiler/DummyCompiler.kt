@@ -13,7 +13,7 @@ import java.io.OutputStream
 class DummyCompiler(private val scriptFactory: XScriptFactory) : Compiler {
 
     @Suppress("UNUSED_VARIABLE")
-    override fun compile(reporter: Appendable, definitions: List<XDefDocument>): XDPool {
+    override fun compile(definitions: List<XDefDocument>, reporter: Appendable): XDPool {
         val script = scriptFactory.createXScriptCompiler()
         TODO("not implemented")
     }

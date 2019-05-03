@@ -12,12 +12,12 @@ import java.io.OutputStream
 interface Compiler {
 
     /**
-     * @param reporter
      * @param definitions
+     * @param reporter
      *
      * @return
      */
-    fun compile(reporter: Appendable, definitions: List<XDefDocument>): XDPool
+    fun compile(definitions: List<XDefDocument>, reporter: Appendable): XDPool
 
     /**
      * @param pool
