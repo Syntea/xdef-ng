@@ -6,7 +6,7 @@ import cz.syntea.xdef.core.document.data.XAttribute
 import cz.syntea.xdef.core.document.data.XValue
 
 /**
- * File contains events used for streaming data processing
+ * File contains events used for stream document processing
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

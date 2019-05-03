@@ -1,7 +1,7 @@
 package cz.syntea.xdef.core
 
 /**
- * Interface supply location object in source data
+ * Interface supply location object in source document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
