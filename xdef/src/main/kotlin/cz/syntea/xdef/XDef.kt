@@ -115,6 +115,7 @@ class XDef(
 
     override fun <F, T> create(
         xDefName: String,
+        modelName: String,
         input: InputStream?,
         output: OutputStream?,
         reporter: java.lang.Appendable,
@@ -126,6 +127,7 @@ class XDef(
 
         val result = runtime.create(
             definition = definition,
+            modelName = modelName,
             input = input?.let { from.createTranslationReader(it) },
             output = output?.let { to.createTranslationWriter(it) },
             reporter = reporter
@@ -135,6 +137,7 @@ class XDef(
 
     override fun <F, T> create(
         xDefName: String,
+        modelName: String,
         input: Reader?,
         output: Writer?,
         reporter: java.lang.Appendable,
@@ -146,6 +149,7 @@ class XDef(
 
         val result = runtime.create(
             definition = definition,
+            modelName = modelName,
             input = input?.let { from.createTranslationReader(it) },
             output = output?.let { to.createTranslationWriter(it) },
             reporter = reporter
@@ -155,6 +159,7 @@ class XDef(
 
     override fun <F, T> create(
         xDefName: String,
+        modelName: String,
         input: F?,
         output: OutputStream?,
         reporter: java.lang.Appendable,
@@ -166,6 +171,7 @@ class XDef(
 
         val result = runtime.create(
             definition = definition,
+            modelName = modelName,
             input = input?.let { from.translate(input).root },
             output = output?.let { to.createTranslationWriter(it) },
             reporter = reporter
@@ -175,6 +181,7 @@ class XDef(
 
     override fun <F, T> create(
         xDefName: String,
+        modelName: String,
         input: F?,
         output: Writer?,
         reporter: java.lang.Appendable,
@@ -186,6 +193,7 @@ class XDef(
 
         val result = runtime.create(
             definition = definition,
+            modelName = modelName,
             input = input?.let { from.translate(input).root },
             output = output?.let { to.createTranslationWriter(it) },
             reporter = reporter
