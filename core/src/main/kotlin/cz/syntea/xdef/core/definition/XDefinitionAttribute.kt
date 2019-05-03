@@ -23,4 +23,4 @@ data class XDefinitionAttribute(
     override val setupScopeCommand: CompiledScript?,
     override val lineNumber: Int,
     override val columnNumber: Int
-) : Attribute<CompiledScript>, OccurrenceBoundary, Xyz, Localizable, Serializable
+) : Attribute<CompiledScript>, Scripted, Localizable, Serializable

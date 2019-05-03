@@ -18,7 +18,7 @@ import java.io.Serializable
 /**
  *
  */
-sealed class XDefinitionTree : Tree, OccurrenceBoundary, Xyz, Localizable, Serializable
+sealed class XDefinitionTree : Tree, Scripted, Localizable, Serializable
 
 /**
  *

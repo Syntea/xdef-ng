@@ -8,8 +8,7 @@ import cz.syntea.xdef.core.lang.Option
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
-//TODO Name!!!
-interface Xyz {
+interface Scripted : OccurrenceBoundary {
 
     /**
      *
