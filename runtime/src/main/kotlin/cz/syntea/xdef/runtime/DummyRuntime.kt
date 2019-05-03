@@ -24,11 +24,23 @@ class DummyRuntime(private val scriptFactory: XScriptFactory) : Runtime {
         TODO("not implemented")
     }
 
-    override fun create(definition: XDefinition, input: XTree?, output: XWriter?, reporter: Appendable): XTree {
+    override fun create(
+        definition: XDefinition,
+        modelName: String,
+        input: XTree?,
+        output: XWriter?,
+        reporter: Appendable
+    ): XTree {
         TODO("not implemented")
     }
 
-    override fun create(definition: XDefinition, input: XReader?, output: XWriter?, reporter: Appendable): XTree {
+    override fun create(
+        definition: XDefinition,
+        modelName: String,
+        input: XReader?,
+        output: XWriter?,
+        reporter: Appendable
+    ): XTree {
         TODO("not implemented")
     }
 }

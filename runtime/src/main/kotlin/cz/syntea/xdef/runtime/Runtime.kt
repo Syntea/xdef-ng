@@ -34,21 +34,29 @@ interface Runtime {
 
     /**
      * @param definition
+     * @param modelName
      * @param input
      * @param output
      * @param reporter
      *
      * @return
      */
-    fun create(definition: XDefinition, input: XTree?, output: XWriter?, reporter: Appendable): XTree
+    fun create(definition: XDefinition, modelName: String, input: XTree?, output: XWriter?, reporter: Appendable): XTree
 
     /**
      * @param definition
+     * @param modelName
      * @param input
      * @param output
      * @param reporter
      *
      * @return
      */
-    fun create(definition: XDefinition, input: XReader?, output: XWriter?, reporter: Appendable): XTree
+    fun create(
+        definition: XDefinition,
+        modelName: String,
+        input: XReader?,
+        output: XWriter?,
+        reporter: Appendable
+    ): XTree
 }
