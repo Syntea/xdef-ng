@@ -33,6 +33,6 @@ interface Node<out A : Attribute<*>, out T : Tree> : Tree {
  *
  * @param V Type of value
  */
-interface Leaf<V> : Tree {
+interface Leaf<out V> : Tree {
     val value: V?
 }
