@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>validation</module>
+        <module>construction</module>
+        <module>sample-java</module>
+    </modules>
+
+    <parent>
+        <groupId>org.xdef</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.xdef.sample</groupId>
+    <artifactId>sample-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>Samples (Parent)</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.xdef</groupId>
+            <artifactId>xdef</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
