@@ -18,6 +18,8 @@
         <jdom.version>2.0.6</jdom.version>
         <json-p.version>1.1.4</json-p.version>
         <jackson.version>2.9.8</jackson.version>
+        <jsonAssert.version>1.5.0</jsonAssert.version>
+        <xmlunit.version>2.6.2</xmlunit.version>
     </properties>
 
     <dependencies>
@@ -42,6 +44,18 @@
             <version>${json-p.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+            <version>${jsonAssert.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.xmlunit</groupId>
+            <artifactId>xmlunit-assertj</artifactId>
+            <version>${xmlunit.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>
