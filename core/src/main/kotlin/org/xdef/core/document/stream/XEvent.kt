@@ -25,6 +25,7 @@ open class StartDocumentEvent(
 ) : XEvent() {
 
     constructor(location: Location) : this(location.lineNumber, location.columnNumber)
+    constructor() : this(Location.NO_LOCATION)
 
     override fun toString() = javaClass.simpleName!!
 }
@@ -38,6 +39,7 @@ open class EndDocumentEvent(
 ) : XEvent() {
 
     constructor(location: Location) : this(location.lineNumber, location.columnNumber)
+    constructor() : this(Location.NO_LOCATION)
 
     override fun toString() = javaClass.simpleName!!
 }
@@ -52,6 +54,7 @@ open class StartNodeEvent(
 ) : XEvent() {
 
     constructor(name: String, location: Location) : this(name, location.lineNumber, location.columnNumber)
+    constructor(name: String) : this(name, Location.NO_LOCATION)
 
     override fun toString() = javaClass.simpleName!!
 }
@@ -66,6 +69,7 @@ open class EndNodeEvent(
 ) : XEvent() {
 
     constructor(name: String, location: Location) : this(name, location.lineNumber, location.columnNumber)
+    constructor(name: String) : this(name, Location.NO_LOCATION)
 
     override fun toString() = javaClass.simpleName!!
 }
@@ -80,6 +84,7 @@ open class AttributeEvent(
 ) : XEvent() {
 
     constructor(attribute: XAttribute, location: Location) : this(attribute, location.lineNumber, location.columnNumber)
+    constructor(attribute: XAttribute) : this(attribute, Location.NO_LOCATION)
 
     override fun toString() = "${javaClass.simpleName}(attribute=$attribute)"
 }
@@ -94,6 +99,7 @@ open class ValueEvent(
 ) : XEvent() {
 
     constructor(value: XValue?, location: Location) : this(value, location.lineNumber, location.columnNumber)
+    constructor(value: XValue?) : this(value, Location.NO_LOCATION)
 
     override fun toString() = "${javaClass.simpleName}(value=$value)"
 }
