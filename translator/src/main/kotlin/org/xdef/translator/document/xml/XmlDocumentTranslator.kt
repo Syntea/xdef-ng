@@ -99,7 +99,10 @@ class XmlDocumentTranslator : DocumentTranslator<Element> {
 
     private fun xDocument2Document(document: XDocument): Document {
         return when (document) {
-            is XmlXDocument -> document.document //FIXME: Maybe bug
+            is XmlXDocument -> {
+                document.document.detachRootElement()
+                document.document.setRootElement(translate(document.root))
+            }
             else -> Document(translate(document.root))
         }
     }
@@ -109,7 +112,25 @@ class XmlDocumentTranslator : DocumentTranslator<Element> {
             is XLeaf -> Text(tree.value?.value?.plus('\n'))
             is XNode -> tree.let { node ->
                 return when (node) {
-                    is XmlXNode -> node.element
+                    is XmlXNode -> {
+                        val children = mutableListOf<Content>()
+                        val contents = node.element.content
+                        var index = 0
+                        node.children.forEach { child ->
+                            val content = when (child) {
+                                is XmlXNode -> child.element
+                                is XmlXLeaf -> child.text
+                                else -> null
+                            }
+                            if (content != null) {
+                                while (index < contents.size && content !== contents[index++]) {
+                                    children.add(contents[index - 1])
+                                }
+                            }
+                            children.add(xTree2Content(child))
+                        }
+                        node.element.setContent(children)
+                    }
                     else -> Element(node.name.normalizeName()).apply {
                         setAttributes(node.attributes.map {
                             Attribute(
