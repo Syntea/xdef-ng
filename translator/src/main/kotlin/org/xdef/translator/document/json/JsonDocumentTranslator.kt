@@ -13,6 +13,7 @@ import org.xdef.translator.document.json.model.*
 import org.xdef.translator.document.json.std.*
 import org.xdef.translator.document.json.stream.JsonXReader
 import org.xdef.translator.document.json.stream.JsonXWriter
+import org.xdef.translator.indexedName
 import java.io.InputStream
 import java.io.OutputStream
 import java.io.Reader

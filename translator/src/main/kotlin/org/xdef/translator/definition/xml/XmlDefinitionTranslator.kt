@@ -18,9 +18,9 @@ import org.xdef.translator.definition.xml.model.XmlXDefAttribute
 import org.xdef.translator.definition.xml.model.XmlXDefDocument
 import org.xdef.translator.definition.xml.model.XmlXDefLeaf
 import org.xdef.translator.definition.xml.model.XmlXDefNode
-import org.xdef.translator.document.json.indexedName
 import org.xdef.translator.document.xml.model.XmlTextXValue
 import org.xdef.translator.extractLocation
+import org.xdef.translator.indexedName
 import org.xdef.translator.normalizeName
 import java.io.InputStream
 import java.io.OutputStream

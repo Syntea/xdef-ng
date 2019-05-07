@@ -5,11 +5,11 @@ import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.core.JsonToken
 import org.xdef.core.Location
 import org.xdef.core.document.stream.*
-import org.xdef.translator.document.json.indexedName
 import org.xdef.translator.document.json.model.JsonXAttribute
 import org.xdef.translator.document.json.model.JsonXBoolean
 import org.xdef.translator.document.json.model.JsonXNumber
 import org.xdef.translator.document.json.model.JsonXString
+import org.xdef.translator.indexedName
 import org.xdef.translator.peekOrNull
 import java.io.InputStream
 import java.io.Reader

@@ -20,3 +20,5 @@ fun String.normalizeName() = split(WS_REGEX)
  *
  */
 fun Content.extractLocation() = if (this is Located) Location(line, column) else Location.NO_LOCATION
+
+fun indexedName(name: String, index: Int) = "$name.$index"

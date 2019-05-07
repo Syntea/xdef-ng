@@ -15,12 +15,12 @@ import org.xdef.translator.definition.json.model.JsonArrayXDefNode
 import org.xdef.translator.definition.json.model.JsonObjectXDefNode
 import org.xdef.translator.definition.json.model.JsonXDefDocument
 import org.xdef.translator.definition.json.model.JsonXDefLeaf
-import org.xdef.translator.document.json.indexedName
 import org.xdef.translator.document.json.model.JsonXBoolean
 import org.xdef.translator.document.json.model.JsonXNumber
 import org.xdef.translator.document.json.model.JsonXString
 import org.xdef.translator.document.json.model.JsonXValue
 import org.xdef.translator.document.json.std.*
+import org.xdef.translator.indexedName
 import java.io.InputStream
 import java.io.OutputStream
 import java.io.Reader
