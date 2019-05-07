@@ -10,10 +10,18 @@ import org.xdef.core.document.stream.StartNodeEvent
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 
-class StartJsonObjectNodeEvent(name: String, location: Location) : StartNodeEvent(name, location)
+class StartJsonObjectNodeEvent(name: String, location: Location) : StartNodeEvent(name, location) {
+    constructor(name: String) : this(name, Location.NO_LOCATION)
+}
 
-class EndJsonObjectNodeEvent(name: String, location: Location) : EndNodeEvent(name, location)
+class EndJsonObjectNodeEvent(name: String, location: Location) : EndNodeEvent(name, location) {
+    constructor(name: String) : this(name, Location.NO_LOCATION)
+}
 
-class StartJsonArrayNodeEvent(name: String, location: Location) : StartNodeEvent(name, location)
+class StartJsonArrayNodeEvent(name: String, location: Location) : StartNodeEvent(name, location) {
+    constructor(name: String) : this(name, Location.NO_LOCATION)
+}
 
-class EndJsonArrayNodeEvent(name: String, location: Location) : EndNodeEvent(name, location)
+class EndJsonArrayNodeEvent(name: String, location: Location) : EndNodeEvent(name, location) {
+    constructor(name: String) : this(name, Location.NO_LOCATION)
+}
