@@ -2,6 +2,8 @@ package org.xdef.translator.definition.xml.model
 
 import org.xdef.core.document.data.XValue
 import org.xdef.core.document.definition.XDefAttribute
+import org.xdef.core.lang.Event
+import org.xdef.core.lang.Occurrence
 
 /**
  * TODO CLASS_DESCRIPTION
@@ -10,11 +12,13 @@ import org.xdef.core.document.definition.XDefAttribute
  */
 class XmlXDefAttribute(
     name: String,
-    value: XValue?
+    value: XValue?,
+    allowedOccurrences: List<Occurrence>,
+    allowedEvents: List<Event>
 ) : XDefAttribute(
     name,
     value,
-    listOf(), // TODO Determine it
-    listOf() // TODO Determine it
+    allowedOccurrences,
+    allowedEvents
     /*NO LOCATION*/
 )
