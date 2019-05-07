@@ -113,6 +113,7 @@ class XmlDefinitionTranslator : DefinitionTranslator<Element>, DefinitionTransla
                 when (child) {
                     is Element -> element2XDefNode(child)
                     is Text -> XmlXDefLeaf(
+                        text = child,
                         name = indexedName(elementName, index),
                         value = XmlTextXValue(child.text),
                         allowedOccurrences = TEXT_ALLOWED_OCCURRENCES,

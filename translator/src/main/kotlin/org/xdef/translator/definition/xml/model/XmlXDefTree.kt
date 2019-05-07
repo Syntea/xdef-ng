@@ -1,6 +1,7 @@
 package org.xdef.translator.definition.xml.model
 
 import org.jdom2.Element
+import org.jdom2.Text
 import org.xdef.core.Location
 import org.xdef.core.document.definition.XDefAttribute
 import org.xdef.core.document.definition.XDefLeaf
@@ -27,6 +28,7 @@ class XmlXDefNode(
 ) : XDefNode(name, script, attributes, children, allowedOccurrences, allowedEvents, location)
 
 class XmlXDefLeaf(
+    internal val text: Text,
     name: String,
     value: XmlTextXValue,
     allowedOccurrences: List<Occurrence>,

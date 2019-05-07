@@ -85,6 +85,7 @@ class XmlDocumentTranslator : DocumentTranslator<Element> {
                 when (child) {
                     is Element -> element2XNode(child)
                     is Text -> XmlXLeaf(
+                        text = child,
                         name = indexedName(elementName, index),
                         value = XmlTextXValue(child.text),
                         location = child.extractLocation()

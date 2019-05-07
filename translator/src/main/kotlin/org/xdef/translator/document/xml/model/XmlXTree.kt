@@ -1,6 +1,7 @@
 package org.xdef.translator.document.xml.model
 
 import org.jdom2.Element
+import org.jdom2.Text
 import org.xdef.core.Localizable
 import org.xdef.core.document.data.XAttribute
 import org.xdef.core.document.data.XLeaf
@@ -21,6 +22,7 @@ class XmlXNode(
 ) : XNode(name, attributes, children, location)
 
 class XmlXLeaf(
+    internal val text: Text,
     name: String,
     value: XmlTextXValue,
     location: Localizable
