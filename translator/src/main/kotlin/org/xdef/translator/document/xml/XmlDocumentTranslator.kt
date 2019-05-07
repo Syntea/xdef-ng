@@ -9,11 +9,13 @@ import org.xdef.core.document.data.XDocument
 import org.xdef.core.document.data.XLeaf
 import org.xdef.core.document.data.XNode
 import org.xdef.core.document.data.XTree
+import org.xdef.translator.MISSING_ROOT_ELEMENT_NAME
 import org.xdef.translator.document.DocumentTranslator
 import org.xdef.translator.document.xml.model.XmlXDocument
 import org.xdef.translator.document.xml.model.XmlXNode
 import org.xdef.translator.document.xml.stream.XmlXReader
 import org.xdef.translator.document.xml.stream.XmlXWriter
+import org.xdef.translator.normalizeName
 import java.io.InputStream
 import java.io.OutputStream
 import java.io.Reader
@@ -26,17 +28,6 @@ import java.io.Writer
  */
 class XmlDocumentTranslator : DocumentTranslator<Element> {
 
-    companion object Constants {
-        const val ROOT_ELEMENT_NAME = "org.xdef.root"
-
-        // TODO not all illegal characters
-        private val WS_REGEX = "\\s".toRegex()
-
-        private fun String.normalizeName() = split(WS_REGEX)
-            .joinToString(separator = "_")
-            .ifEmpty { "__WS__" }
-    }
-
     private val reader = SAXBuilder().apply { jdomFactory = LocatedJDOMFactory() }
     private val writer = XMLOutputter().apply { format = Format.getPrettyFormat() }
 
@@ -47,7 +38,7 @@ class XmlDocumentTranslator : DocumentTranslator<Element> {
     override fun translate(documentTree: XTree): Element {
         return when (val content = xTree2Content(documentTree)) {
             is Element -> content
-            else -> Element(ROOT_ELEMENT_NAME).addContent(content)
+            else -> Element(MISSING_ROOT_ELEMENT_NAME).addContent(content)
         }
     }
 
