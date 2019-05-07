@@ -46,25 +46,12 @@ class XmlDocumentTranslator : DocumentTranslator<Element> {
 
     override fun readDocument(input: Reader) = translate(reader.build(input))
 
-    //FIXME: Duplicated code
     override fun writeDocument(document: XDocument, output: OutputStream) {
-        writer.output(
-            when (document) {
-                is XmlXDocument -> document.document //FIXME: Maybe bug
-                else -> Document(translate(document.root))
-            },
-            output
-        )
+        writer.output(xDocument2Document(document), output)
     }
 
     override fun writeDocument(document: XDocument, output: Writer) {
-        writer.output(
-            when (document) {
-                is XmlXDocument -> document.document //FIXME: Maybe bug
-                else -> Document(translate(document.root))
-            },
-            output
-        )
+        writer.output(xDocument2Document(document), output)
     }
 
     override fun createTranslationReader(input: InputStream) = XmlXReader(input)
@@ -74,6 +61,13 @@ class XmlDocumentTranslator : DocumentTranslator<Element> {
     override fun createTranslationWriter(output: OutputStream) = XmlXWriter(output)
 
     override fun createTranslationWriter(output: Writer) = XmlXWriter(output)
+
+    private fun xDocument2Document(document: XDocument): Document {
+        return when (document) {
+            is XmlXDocument -> document.document //FIXME: Maybe bug
+            else -> Document(translate(document.root))
+        }
+    }
 
     private fun translate(document: Document) = XmlXDocument(document)
 
