@@ -9,7 +9,9 @@ typealias FileSource = Triple<SupportedDataType, File, Charset?>
 typealias UrlSource = Triple<SupportedDataType, URL, Charset?>
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Class holds all sources of X-definition
+ *
+ * To support other sources add list of source to the constructor
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

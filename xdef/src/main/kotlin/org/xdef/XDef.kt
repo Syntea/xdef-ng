@@ -17,7 +17,7 @@ import java.net.URL
 import java.nio.charset.Charset
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Main class of whole framework
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
@@ -36,6 +36,10 @@ class XDef(
         if (compile) compile()
     }
 
+    /**
+     * This is general method when must be implemented
+     * Others method are mapped to it
+     */
     override fun <F, T> parse(
         xDefName: String,
         input: InputStream,
@@ -56,6 +60,10 @@ class XDef(
         return to.translate(result)
     }
 
+    /**
+     * This is general method when must be implemented
+     * Others method are mapped to it
+     */
     override fun <F, T> parse(
         xDefName: String, input: Reader, output: Writer?, reporter: Appendable,
         from: DocumentTranslator<F>,
@@ -73,6 +81,10 @@ class XDef(
         return to.translate(result)
     }
 
+    /**
+     * This is general method when must be implemented
+     * Others method are mapped to it
+     */
     override fun <F, T> parse(
         xDefName: String,
         input: F,
@@ -93,6 +105,10 @@ class XDef(
         return to.translate(result)
     }
 
+    /**
+     * This is general method when must be implemented
+     * Others method are mapped to it
+     */
     override fun <F, T> parse(
         xDefName: String,
         input: F,
@@ -113,6 +129,10 @@ class XDef(
         return to.translate(result)
     }
 
+    /**
+     * This is general method when must be implemented
+     * Others method are mapped to it
+     */
     override fun <F, T> create(
         xDefName: String,
         modelName: String,
@@ -135,6 +155,10 @@ class XDef(
         return to.translate(result)
     }
 
+    /**
+     * This is general method when must be implemented
+     * Others method are mapped to it
+     */
     override fun <F, T> create(
         xDefName: String,
         modelName: String,
@@ -157,6 +181,10 @@ class XDef(
         return to.translate(result)
     }
 
+    /**
+     * This is general method when must be implemented
+     * Others method are mapped to it
+     */
     override fun <F, T> create(
         xDefName: String,
         modelName: String,
@@ -179,6 +207,10 @@ class XDef(
         return to.translate(result)
     }
 
+    /**
+     * This is general method when must be implemented
+     * Others method are mapped to it
+     */
     override fun <F, T> create(
         xDefName: String,
         modelName: String,
@@ -208,21 +240,29 @@ class XDef(
     }
 
     /**
-     *
+     * Mediated method from [Compiler] interface
+     * Use for serialize [XDPool] which is in XDef instance
      */
     fun serializeXDPool(poolStream: OutputStream) =
         compiler.serializeXDPool(returnOrCompilePool(System.out), poolStream)
 
+    /**
+     * Extension of mediated method from [Compiler] interface
+     */
     fun serializeXDPool(poolFile: File) = poolFile.outputStream().use { serializeXDPool(it) }
 
     /**
-     *
+     * Mediated method from [Compiler] interface
+     * Use for deserialize [XDPool] which is in XDef instance
      */
     fun deserializeXDPool(poolStream: InputStream) {
         if (pool != null) logger.warn("XDPool exists, it be overwritten")
         pool = compiler.deserializeXDPool(poolStream)
     }
 
+    /**
+     * Extension of mediated method from [Compiler] interface
+     */
     fun deserializeXDPool(poolFile: File) = poolFile.inputStream().use { deserializeXDPool(it) }
 
     @Suppress("NAME_SHADOWING")
@@ -333,13 +373,17 @@ class XDef(
         }
 
         /**
-         * @return
+         * Create XDef framework with compilation of X-definition
+         *
+         * @return Instance of XDef
          */
         @Throws(IllegalStateException::class, IOException::class)
         fun buildWithCompile() = createXDef(true)
 
         /**
-         * @return
+         * Create XDef framework without compilation of X-definition
+         *
+         * @return Instance of XDef
          */
         @Throws(IllegalStateException::class)
         fun build() = createXDef(false)
