@@ -11,4 +11,6 @@ data class DocumentType(
      * Identifier of document, e.g. "XML", "JSON"
      */
     val name: String
-)
+) {
+    override fun toString() = name
+}
