@@ -6,7 +6,7 @@ import java.io.InputStream
 import java.io.OutputStream
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Dummy implementation of [Compiler] for demonstrating using [XScriptFactory]
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

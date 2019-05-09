@@ -5,30 +5,36 @@ import java.io.InputStream
 import java.io.OutputStream
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Interface of Compiler component
+ * It declares method used for compiling X-definitions
+ * and methods for de/serialization set of compiled X-definitions [XDPool]
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 interface Compiler {
 
     /**
-     * @param definitions
-     * @param reporter
+     * @param definitions Collection of raw X-definition
+     * @param reporter Use for reporting data by processing
      *
-     * @return
+     * @return Set of compiled X-definitions
      */
     fun compile(definitions: List<XDefDocument>, reporter: Appendable): XDPool
 
     /**
-     * @param pool
-     * @param poolStream
+     * Serialize X-definition
+     *
+     * @param pool Set of compiled X-definitions
+     * @param poolStream Output
      */
     fun serializeXDPool(pool: XDPool, poolStream: OutputStream)
 
     /**
-     * @param poolStream
+     * Deserialize X-definition
      *
-     * @return
+     * @param poolStream Input
+     *
+     * @return Set of compiled X-definitions
      */
     fun deserializeXDPool(poolStream: InputStream): XDPool
 }
