@@ -3,7 +3,7 @@ package org.xdef.core.definition
 import org.xdef.core.lang.Occurrence
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Interface represents part of r-script, which defines occurrence of elem
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

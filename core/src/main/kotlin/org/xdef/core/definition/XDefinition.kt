@@ -4,7 +4,7 @@ import org.xdef.core.XScriptInfo
 import java.io.Serializable
 
 /**
- * TODO CLASS_DESCRIPTION
+ * It represents compiled X-definition document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

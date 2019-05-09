@@ -4,7 +4,8 @@ import org.xdef.core.Localizable
 import org.xdef.core.Location
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Reimplementation class [XValue]
+ * In constructor accepting type [Localizable] for comfortable creating instances
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

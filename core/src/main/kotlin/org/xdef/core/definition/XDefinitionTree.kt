@@ -10,18 +10,18 @@ import org.xdef.core.lang.Option
 import java.io.Serializable
 
 /**
- * TODO CLASS_DESCRIPTION
+ * File contains classes for defined tree structure of X-definition
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 
 /**
- *
+ * Basic class for defined X-definition tree
  */
 sealed class XDefinitionTree : Tree, Scripted, Localizable, Serializable
 
 /**
- *
+ * X-definition node
  */
 data class XDefinitionNode(
     override val name: String,
@@ -38,7 +38,8 @@ data class XDefinitionNode(
 ) : XDefinitionTree(), Node<XDefinitionAttribute, XDefinitionTree>
 
 /**
- *
+ * X-definition leaf
+ * It contains script for validation of type of value
  */
 data class XDefinitionLeaf(
     override val name: String,
@@ -50,5 +51,8 @@ data class XDefinitionLeaf(
     override val setupScopeCommand: CompiledScript?,
     override val lineNumber: Int,
     override val columnNumber: Int,
+    /**
+     * Part of X-definition script, which used for validation of type of value
+     */
     override val value: CompiledScript?
 ) : XDefinitionTree(), Leaf<CompiledScript>

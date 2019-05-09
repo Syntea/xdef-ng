@@ -3,7 +3,8 @@ package org.xdef.core.document.data
 import org.xdef.core.Localizable
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Class represents the value of tree of document
+ * Wrapped value cannot be changed. For change new this class with correct value
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

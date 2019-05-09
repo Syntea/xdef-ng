@@ -6,7 +6,7 @@ import org.xdef.core.Node
 import org.xdef.core.Tree
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Basic class for represents tree structure of document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
@@ -19,7 +19,7 @@ sealed class XTree(
 }
 
 /**
- *
+ * Document node
  */
 open class XNode(
     name: String,
@@ -29,10 +29,14 @@ open class XNode(
 ) : XTree(name, location), Node<XAttribute, XTree>
 
 /**
- *
+ * Document leaf
+ * It represents values in document
  */
 open class XLeaf(
     name: String,
+    /**
+     * Value can be `null`
+     */
     override var value: XValue?,
     location: Localizable
 ) : XTree(name, location), Leaf<XValue>

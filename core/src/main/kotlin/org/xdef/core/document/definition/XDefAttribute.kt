@@ -8,7 +8,7 @@ import org.xdef.core.lang.Event
 import org.xdef.core.lang.Occurrence
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Class represents attribute of node of document with X-definition
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
@@ -30,5 +30,8 @@ open class XDefAttribute(
     override val lineNumber = location.lineNumber
     override val columnNumber = location.columnNumber
 
-    override val script get() = value?.toString()
+    /**
+     * In default implementation X-definition script is contained in the value of attribute
+     */
+    override val script get() = value?.value
 }

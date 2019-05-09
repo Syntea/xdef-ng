@@ -1,7 +1,13 @@
 package org.xdef.core.lang
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Enum defined all existing type of occurrence, which used for specify occurrence same structures by processing
+ * It's part of r-script
+ *
+ * Each Occurrence has defined main form representation and alternative forms if exists
+ *
+ * @param regex Main form
+ * @param alternatives Alternative forms
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
@@ -28,5 +34,9 @@ enum class Occurrence(
         )
     );
 
+    /**
+     * Property for returning all forms
+     */
+    @Suppress("unused")
     val allRegexes = listOf(regex).plus(alternatives)
 }

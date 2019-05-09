@@ -12,12 +12,12 @@ import org.xdef.core.document.data.XValue
  */
 
 /**
- *
+ * Basic class defines hierarchy of supported events
  */
 sealed class XEvent : Localizable
 
 /**
- *
+ * Signaling start of document
  */
 open class StartDocumentEvent(
     override val lineNumber: Int,
@@ -31,7 +31,7 @@ open class StartDocumentEvent(
 }
 
 /**
- *
+ * Signaling end of document
  */
 open class EndDocumentEvent(
     override val lineNumber: Int,
@@ -45,7 +45,9 @@ open class EndDocumentEvent(
 }
 
 /**
- * @param name
+ * Signaling start of document's node
+ *
+ * @param name Name of node
  */
 open class StartNodeEvent(
     val name: String,
@@ -60,7 +62,10 @@ open class StartNodeEvent(
 }
 
 /**
- * @param name
+ * Signaling end of document's node
+ * It is sent if all node§s content was processed
+ *
+ * @param name Name of node
  */
 open class EndNodeEvent(
     val name: String,
@@ -75,7 +80,9 @@ open class EndNodeEvent(
 }
 
 /**
- * @param attribute
+ * Signaling the attribute and contains his data like name and value
+ *
+ * @param attribute Structure of name-value pair
  */
 open class AttributeEvent(
     val attribute: XAttribute,
@@ -90,7 +97,9 @@ open class AttributeEvent(
 }
 
 /**
- * @param value
+ * Signaling the value and contains his data
+ *
+ * @param value The value of event
  */
 open class ValueEvent(
     val value: XValue?,

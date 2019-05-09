@@ -6,13 +6,13 @@ import org.xdef.core.lang.Event
 import org.xdef.core.lang.Occurrence
 
 /**
- * TODO CLASS_DESCRIPTION
+ * File contains structures of the tree of document with X-definition
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 
 /**
- *
+ * Basic class for represents tree structure of document with X-definition
  */
 sealed class XDefTree(
     override val name: String,
@@ -25,7 +25,7 @@ sealed class XDefTree(
 }
 
 /**
- *
+ * Document leaf
  */
 open class XDefNode(
     name: String,
@@ -38,7 +38,8 @@ open class XDefNode(
 ) : XDefTree(name, allowedOccurrences, allowedEvents, location), Node<XDefAttribute, XDefTree>
 
 /**
- *
+ * Document leaf
+ * It represents values in document
  */
 open class XDefLeaf(
     name: String,
@@ -48,5 +49,8 @@ open class XDefLeaf(
     location: Location
 ) : XDefTree(name, allowedOccurrences, allowedEvents, location), Leaf<XValue> {
 
-    override val script get() = value?.toString()
+    /**
+     * In default implementation X-definition script is contained in value
+     */
+    override val script get() = value?.value
 }
