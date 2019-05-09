@@ -6,51 +6,60 @@ import org.xdef.core.document.stream.XReader
 import org.xdef.core.document.stream.XWriter
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Interface of Runtime component
+ * It contains method for processing data
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 interface Runtime {
 
     /**
-     * @param definition
-     * @param input
-     * @param output
-     * @param reporter
+     * Processing [XTree] in validation mode
      *
-     * @return
+     * @param definition X-definition
+     * @param input Data for validation
+     * @param output Output for continuous writing
+     * @param reporter Reporter for logs information about running
+     *
+     * @return Document from input or fragment of the document
      */
     fun parse(definition: XDefinition, input: XTree, output: XWriter?, reporter: Appendable): XTree
 
     /**
-     * @param definition
-     * @param input
-     * @param output
-     * @param reporter
+     * Processing [XTree] in validation mode
      *
-     * @return
+     * @param definition X-definition
+     * @param input Data for validation
+     * @param output Output for continuous writing
+     * @param reporter Reporter for logs information about running
+     *
+     * @return Document from input or fragment of the document
      */
     fun parse(definition: XDefinition, input: XReader, output: XWriter?, reporter: Appendable): XTree
 
     /**
-     * @param definition
-     * @param modelName
-     * @param input
-     * @param output
-     * @param reporter
+     * Processing creating mode
      *
-     * @return
+     * @param definition X-definition
+     * @param modelName Name of started model
+     * @param input Data for transformation
+     * @param output Output for continuous writing
+     * @param reporter Reporter for logs information about running
+     *
+     * @return Created document or fragment of the document
      */
     fun create(definition: XDefinition, modelName: String, input: XTree?, output: XWriter?, reporter: Appendable): XTree
 
     /**
-     * @param definition
-     * @param modelName
-     * @param input
-     * @param output
-     * @param reporter
+     * Processing creating mode
      *
-     * @return
+     * @param definition X-definition
+     * @param modelName Name of started model
+     * @param input Data for transformation
+     * @param output Output for continuous writing
+     * @param reporter Reporter for logs information about running
+     *
+     * @return Created document or fragment of the document
      */
     fun create(
         definition: XDefinition,

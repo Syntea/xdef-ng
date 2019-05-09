@@ -8,7 +8,7 @@ import org.xdef.script.XScriptFactory
 import org.xdef.script.XScriptRuntime
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Dummy implementation of [Runtime] for demonstrating using [XScriptFactory]
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
