@@ -1,0 +1,27 @@
+[
+  {
+    "A": "A-value",
+    "B": true,
+    "C": 12345,
+    "U": null,
+    "xd:script": "1..200"
+  },
+  {
+    "A": "A-value",
+    "B": true,
+    "C": 12345,
+    "U": null
+  },
+  {
+    "A": "A-value",
+    "B": true,
+    "C": 12345,
+    "U": null
+  },
+  {
+    "A": "A-value",
+    "B": true,
+    "C": 12345,
+    "U": null
+  }
+]
