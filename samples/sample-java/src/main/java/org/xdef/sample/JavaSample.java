@@ -16,6 +16,7 @@ public class JavaSample {
                 .addRuleSource(SupportedDataType.XML, new File("example.xdef"))
                 .build();
 
+        @SuppressWarnings("unused")
         JsonValue jsonValue = xdef.parseXMLtoJSON("example", new FileInputStream(new File("example.xml")), null, System.err);
     }
 }

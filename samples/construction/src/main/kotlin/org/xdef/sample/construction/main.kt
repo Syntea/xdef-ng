@@ -15,5 +15,6 @@ fun main() {
         )
         .build()
 
+    @Suppress("UNUSED_VARIABLE")
     val jsonValue = xdef.createJSONtoJSON("example", "exampleModel", File("example.json").inputStream())
 }
