@@ -83,6 +83,7 @@ class JsonXReader private constructor(private val reader: JsonParser) : XReader 
                 )
             }
             JsonToken.END_ARRAY -> {
+                nameStack.pop() // clear name for possible elem
                 structureStack.pop()
                 indexStack.pop()
                 EndJsonArrayNodeEvent(

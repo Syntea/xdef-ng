@@ -92,10 +92,10 @@ class JsonDefinitionTranslator : DefinitionTranslator<JsonValue>, DefinitionTran
                 val (scripts, attrs) = attributes.partition { (name, _) -> X_SCRIPT_IDENTIFIER == name }
                 val script = when (scripts.size) {
                     0 -> null
-                    1 -> scripts[0].toString()
+                    1 -> scripts[0].value.toString()
                     else -> {
                         logger.warn("Definition has more script declarations, first log is used")
-                        scripts[0].toString()
+                        scripts[0].value.toString()
                     }
                 }
                 JsonObjectXDefNode(
