@@ -7,6 +7,8 @@ import org.apache.logging.log4j.kotlin.Logging
 import org.xdef.core.Location
 import org.xdef.core.document.data.XValue
 import org.xdef.core.document.definition.*
+import org.xdef.core.lang.Event
+import org.xdef.core.lang.Occurrence
 import org.xdef.translator.JSON_ROOT_NODE_NAME
 import org.xdef.translator.definition.DefinitionTranslator
 import org.xdef.translator.definition.DefinitionTranslatorIO
@@ -43,6 +45,17 @@ class JsonDefinitionTranslator : DefinitionTranslator<JsonValue>, DefinitionTran
 
     companion object {
         const val X_SCRIPT_IDENTIFIER = "xd:script"
+
+        // TODO Determine it
+        // Now same for all
+        private val STRUCTURE_ALLOWED_OCCURRENCES = listOf<Occurrence>()
+        private val STRUCTURE_ALLOWED_EVENTS = listOf<Event>()
+
+        private val ATTRIBUTE_ALLOWED_OCCURRENCES = listOf<Occurrence>()
+        private val ATTRIBUTE_ALLOWED_EVENTS = listOf<Event>()
+
+        private val VALUE_ALLOWED_OCCURRENCES = listOf<Occurrence>()
+        private val VALUE_ALLOWED_EVENTS = listOf<Event>()
     }
 
     private val factory = JsonFactory()
@@ -115,14 +128,14 @@ class JsonDefinitionTranslator : DefinitionTranslator<JsonValue>, DefinitionTran
                         XDefAttribute(
                             name = name,
                             value = jsonValue2XValue(value),
-                            allowedOccurrences = emptyList(), // TODO
-                            allowedEvents = emptyList(), // TODO
+                            allowedOccurrences = ATTRIBUTE_ALLOWED_OCCURRENCES,
+                            allowedEvents = ATTRIBUTE_ALLOWED_EVENTS,
                             location = Location.NO_LOCATION // FIXME
                         )
                     },
                     children = children.map { (name, child) -> this.jsonValue2XDefTree(name, child) }.toList(),
-                    allowedOccurrences = emptyList(), // TODO
-                    allowedEvents = emptyList(), // TODO
+                    allowedOccurrences = STRUCTURE_ALLOWED_OCCURRENCES,
+                    allowedEvents = STRUCTURE_ALLOWED_EVENTS,
                     location = value.extractLocation()
                 )
             }
@@ -135,8 +148,8 @@ class JsonDefinitionTranslator : DefinitionTranslator<JsonValue>, DefinitionTran
                         value = child
                     )
                 },
-                allowedOccurrences = emptyList(), // TODO
-                allowedEvents = emptyList(), // TODO
+                allowedOccurrences = STRUCTURE_ALLOWED_OCCURRENCES,
+                allowedEvents = STRUCTURE_ALLOWED_EVENTS,
                 location = value.extractLocation()
             )
             JsonValue.ValueType.STRING,
@@ -146,8 +159,8 @@ class JsonDefinitionTranslator : DefinitionTranslator<JsonValue>, DefinitionTran
             JsonValue.ValueType.NULL -> JsonXDefLeaf(
                 name = nodeName,
                 value = jsonValue2XValue(value),
-                allowedOccurrences = emptyList(), // TODO
-                allowedEvents = emptyList(), // TODO
+                allowedOccurrences = VALUE_ALLOWED_OCCURRENCES,
+                allowedEvents = VALUE_ALLOWED_EVENTS,
                 location = value.extractLocation()
             )
         }
