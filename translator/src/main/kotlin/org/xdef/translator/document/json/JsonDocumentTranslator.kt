@@ -8,6 +8,7 @@ import org.xdef.core.Localizable
 import org.xdef.core.Location
 import org.xdef.core.document.data.*
 import org.xdef.core.toLocation
+import org.xdef.translator.JSON_ROOT_NODE_NAME
 import org.xdef.translator.document.DocumentTranslator
 import org.xdef.translator.document.DocumentTranslatorIO
 import org.xdef.translator.document.json.model.*
@@ -35,19 +36,15 @@ import javax.json.JsonValue
  */
 class JsonDocumentTranslator : DocumentTranslator<JsonValue>, Logging {
 
-    companion object {
-        const val ROOT_NODE_NAME = "org.xdef.root"
-    }
-
     private val factory = JsonFactory()
 
-    override fun translate(dom: JsonValue) = JsonXDocument(jsonValue2XTree(ROOT_NODE_NAME, dom))
+    override fun translate(dom: JsonValue) = JsonXDocument(jsonValue2XTree(JSON_ROOT_NODE_NAME, dom))
 
     override fun translate(document: XDocument) = translate(document.root)
 
     override fun translate(documentTree: XTree): JsonValue {
         // Name was add
-        return if (ROOT_NODE_NAME == documentTree.name) {
+        return if (JSON_ROOT_NODE_NAME == documentTree.name) {
             xTree2JsonValue(documentTree)
         } else {
             LocalizedJsonObject(mapOf(documentTree.name to xTree2JsonValue(documentTree)))

@@ -14,10 +14,10 @@ import org.skyscreamer.jsonassert.JSONAssert
 import org.xdef.core.Location
 import org.xdef.core.document.data.XValue
 import org.xdef.core.document.definition.XDefAttribute
+import org.xdef.translator.JSON_ROOT_NODE_NAME
 import org.xdef.translator.SupportedDataType
 import org.xdef.translator.dataset.json.*
 import org.xdef.translator.definition.json.JsonDefinitionTranslator
-import org.xdef.translator.definition.json.JsonDefinitionTranslator.Companion.ROOT_NODE_NAME
 import org.xdef.translator.definition.json.model.JsonArrayXDefNode
 import org.xdef.translator.definition.json.model.JsonObjectXDefNode
 import org.xdef.translator.definition.json.model.JsonXDefDocument
@@ -107,7 +107,7 @@ internal class JsonDefinitionTranslatorTest : FreeSpec() {
                     "complexMixedDefinition".resToDefinition() should { def ->
                         def.type.name shouldBe SupportedDataType.JSON.name
                         def.root.shouldBeInstanceOf<JsonObjectXDefNode> { objectNode ->
-                            objectNode.name shouldBe ROOT_NODE_NAME
+                            objectNode.name shouldBe JSON_ROOT_NODE_NAME
                             objectNode.script shouldBe "0..200"
                             objectNode.attributes shouldHaveSize 13
                             objectNode.attributes
@@ -151,7 +151,7 @@ internal class JsonDefinitionTranslatorTest : FreeSpec() {
                     translator.writeDefinition(
                         JsonXDefDocument(
                             root = JsonObjectXDefNode(
-                                name = ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 script = "required",
                                 attributes = emptyList(),
                                 children = emptyList(),
@@ -170,7 +170,7 @@ internal class JsonDefinitionTranslatorTest : FreeSpec() {
                     translator.writeDefinition(
                         JsonXDefDocument(
                             root = JsonArrayXDefNode(
-                                name = ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 script = null,
                                 children = listOf(
                                     JsonXDefLeaf(
@@ -196,7 +196,7 @@ internal class JsonDefinitionTranslatorTest : FreeSpec() {
                     translator.writeDefinition(
                         JsonXDefDocument(
                             root = JsonXDefLeaf(
-                                name = ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 value = JsonXString("optional; onTrue xyz"),
                                 allowedOccurrences = emptyList(),
                                 allowedEvents = emptyList(),
@@ -215,7 +215,7 @@ internal class JsonDefinitionTranslatorTest : FreeSpec() {
                     translator.writeDefinition(
                         JsonXDefDocument(
                             root = JsonObjectXDefNode(
-                                name = ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 script = "1..*",
                                 attributes = listOf(
                                     TestXDefAttribute("a", JsonXNumber(1)),
@@ -237,7 +237,7 @@ internal class JsonDefinitionTranslatorTest : FreeSpec() {
                     translator.writeDefinition(
                         JsonXDefDocument(
                             root = JsonArrayXDefNode(
-                                name = ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 script = null,
                                 children = listOf(
                                     JsonXDefLeaf(
@@ -286,7 +286,7 @@ internal class JsonDefinitionTranslatorTest : FreeSpec() {
                     translator.writeDefinition(
                         JsonXDefDocument(
                             root = JsonObjectXDefNode(
-                                name = ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 script = "0..200",
                                 attributes = listOf(
                                     TestXDefAttribute("_id", JsonXString("required string(10)")),

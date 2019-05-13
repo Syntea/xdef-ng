@@ -7,3 +7,5 @@ package org.xdef.translator
  */
 
 const val MISSING_ROOT_ELEMENT_NAME = "org.xdef.root"
+
+const val JSON_ROOT_NODE_NAME = "org.xdef.root"

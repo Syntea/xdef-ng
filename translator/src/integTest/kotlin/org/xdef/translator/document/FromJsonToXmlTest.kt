@@ -1,8 +1,8 @@
 package org.xdef.translator.document
 
 import io.kotlintest.shouldNotThrow
+import org.xdef.translator.JSON_ROOT_NODE_NAME
 import org.xdef.translator.dataset.json.*
-import org.xdef.translator.document.json.JsonDocumentTranslator.Companion.ROOT_NODE_NAME
 import org.xmlunit.assertj.XmlAssert
 import java.math.BigDecimal
 
@@ -13,31 +13,31 @@ import java.math.BigDecimal
  */
 internal class FromJsonToXmlTest : BaseDocumentTranslatorTest() {
 
-    private val minimalObjectAsXml = "<$ROOT_NODE_NAME/>"
-    private val minimalArrayAsXml = "<$ROOT_NODE_NAME/>"
-    private val minimalStringAsXml = "<$ROOT_NODE_NAME/>"
-    private val minimalNumberAsXml = "<$ROOT_NODE_NAME>${BigDecimal(minimalNumber)}</$ROOT_NODE_NAME>"
-    private val minimalBooleanAsXml = "<$ROOT_NODE_NAME>$minimalBoolean</$ROOT_NODE_NAME>"
-    private val nullAsXml = "<$ROOT_NODE_NAME/>"
-    private val simpleObjectAsXml = """<$ROOT_NODE_NAME
+    private val minimalObjectAsXml = "<$JSON_ROOT_NODE_NAME/>"
+    private val minimalArrayAsXml = "<$JSON_ROOT_NODE_NAME/>"
+    private val minimalStringAsXml = "<$JSON_ROOT_NODE_NAME/>"
+    private val minimalNumberAsXml = "<$JSON_ROOT_NODE_NAME>${BigDecimal(minimalNumber)}</$JSON_ROOT_NODE_NAME>"
+    private val minimalBooleanAsXml = "<$JSON_ROOT_NODE_NAME>$minimalBoolean</$JSON_ROOT_NODE_NAME>"
+    private val nullAsXml = "<$JSON_ROOT_NODE_NAME/>"
+    private val simpleObjectAsXml = """<$JSON_ROOT_NODE_NAME
         A="A-value"
         B="false"
         C="12345"
         U=""/>"""
-    private val simpleNumberArrayAsXml = """<$ROOT_NODE_NAME>
+    private val simpleNumberArrayAsXml = """<$JSON_ROOT_NODE_NAME>
         |1
         |2
         |3
         |4
-        |5</$ROOT_NODE_NAME>""".trimMargin()
-    private val simpleMixedArrayAsXml = """<$ROOT_NODE_NAME>
+        |5</$JSON_ROOT_NODE_NAME>""".trimMargin()
+    private val simpleMixedArrayAsXml = """<$JSON_ROOT_NODE_NAME>
         |A
         |1
-        |<$ROOT_NODE_NAME.3/>
+        |<$JSON_ROOT_NODE_NAME.3/>
         |false
-        |<$ROOT_NODE_NAME.5></$ROOT_NODE_NAME.5>
+        |<$JSON_ROOT_NODE_NAME.5></$JSON_ROOT_NODE_NAME.5>
         |true
-        |</$ROOT_NODE_NAME>""".trimMargin()
+        |</$JSON_ROOT_NODE_NAME>""".trimMargin()
     private val complexHomogenousArray = """
 <org.xdef.root>
   <org.xdef.root.0 A="A-value" B="true" C="12345" U="" />

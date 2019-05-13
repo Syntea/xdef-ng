@@ -1,8 +1,8 @@
 package org.xdef.translator.definition
 
 import io.kotlintest.shouldNotThrow
+import org.xdef.translator.JSON_ROOT_NODE_NAME
 import org.xdef.translator.dataset.json.*
-import org.xdef.translator.definition.json.JsonDefinitionTranslator.Companion.ROOT_NODE_NAME
 import org.xdef.translator.definition.xml.XmlDefinitionTranslator.Companion.X_SCRIPT_NAME
 import org.xdef.translator.definition.xml.XmlDefinitionTranslator.Companion.X_SCRIPT_NAMESPACE
 import org.xdef.translator.definition.xml.XmlDefinitionTranslator.Companion.X_SCRIPT_PREFIX
@@ -16,20 +16,20 @@ import org.xmlunit.assertj.XmlAssert
 internal class FromJsonToXmlTest : BaseDefinitionTranslatorTest() {
 
     private val minimalDefObjectAsXml =
-        """<$ROOT_NODE_NAME xmlns:xd="$X_SCRIPT_NAMESPACE" $X_SCRIPT_PREFIX:$X_SCRIPT_NAME="required"/>"""
-    private val minimalDefArrayAsXml = """<$ROOT_NODE_NAME>optional; onTrue xyz</$ROOT_NODE_NAME>"""
-    private val minimalDefValueAsXml = """<$ROOT_NODE_NAME>optional; onTrue xyz</$ROOT_NODE_NAME>"""
+        """<$JSON_ROOT_NODE_NAME xmlns:xd="$X_SCRIPT_NAMESPACE" $X_SCRIPT_PREFIX:$X_SCRIPT_NAME="required"/>"""
+    private val minimalDefArrayAsXml = """<$JSON_ROOT_NODE_NAME>optional; onTrue xyz</$JSON_ROOT_NODE_NAME>"""
+    private val minimalDefValueAsXml = """<$JSON_ROOT_NODE_NAME>optional; onTrue xyz</$JSON_ROOT_NODE_NAME>"""
     private val simpleDefObjectAsXml =
-        """<$ROOT_NODE_NAME xmlns:xd="$X_SCRIPT_NAMESPACE"
+        """<$JSON_ROOT_NODE_NAME xmlns:xd="$X_SCRIPT_NAMESPACE"
             |$X_SCRIPT_PREFIX:$X_SCRIPT_NAME="1..*"
             |a="1"
             |b="c"/>""".trimMargin()
     private val simpleDefArrayAsXml =
-        """<$ROOT_NODE_NAME>
+        """<$JSON_ROOT_NODE_NAME>
             |required
             |1
-            |true</$ROOT_NODE_NAME>""".trimMargin()
-    private val complexMixedAsXml = """<$ROOT_NODE_NAME xmlns:xd="$X_SCRIPT_NAMESPACE"
+            |true</$JSON_ROOT_NODE_NAME>""".trimMargin()
+    private val complexMixedAsXml = """<$JSON_ROOT_NODE_NAME xmlns:xd="$X_SCRIPT_NAMESPACE"
         $X_SCRIPT_PREFIX:$X_SCRIPT_NAME="0..200"
         _id="required string(10)"
         index="optional int()"
@@ -49,7 +49,7 @@ internal class FromJsonToXmlTest : BaseDefinitionTranslatorTest() {
   <friends>
     <friends.0 $X_SCRIPT_PREFIX:$X_SCRIPT_NAME="1..*" id="0" name="Davis Montgomery" />
   </friends>
-</$ROOT_NODE_NAME>"""
+</$JSON_ROOT_NODE_NAME>"""
 
     init {
         "definition" - {

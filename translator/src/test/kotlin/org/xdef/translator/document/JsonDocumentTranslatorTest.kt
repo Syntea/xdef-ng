@@ -14,6 +14,7 @@ import org.apache.commons.io.IOUtils
 import org.skyscreamer.jsonassert.JSONAssert
 import org.xdef.core.Attribute
 import org.xdef.core.document.data.XTree
+import org.xdef.translator.JSON_ROOT_NODE_NAME
 import org.xdef.translator.SupportedDataType
 import org.xdef.translator.dataset.json.*
 import org.xdef.translator.document.json.JsonDocumentTranslator
@@ -49,7 +50,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                         doc.type.name shouldBe SupportedDataType.JSON.name
                         doc.shouldBeInstanceOf<JsonXDocument>()
                         doc.root.shouldBeInstanceOf<JsonObjectXNode> { node ->
-                            node.name shouldBe JsonDocumentTranslator.ROOT_NODE_NAME
+                            node.name shouldBe JSON_ROOT_NODE_NAME
                             node.attributes.shouldBeEmpty()
                             node.children.shouldBeEmpty()
                         }
@@ -60,7 +61,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                         doc.type.name shouldBe SupportedDataType.JSON.name
                         doc.shouldBeInstanceOf<JsonXDocument>()
                         doc.root.shouldBeInstanceOf<JsonArrayXNode> { node ->
-                            node.name shouldBe JsonDocumentTranslator.ROOT_NODE_NAME
+                            node.name shouldBe JSON_ROOT_NODE_NAME
                             node.attributes.shouldBeEmpty()
                             node.children.shouldBeEmpty()
                         }
@@ -71,7 +72,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                         doc.type.name shouldBe SupportedDataType.JSON.name
                         doc.shouldBeInstanceOf<JsonXDocument>()
                         doc.root.shouldBeInstanceOf<JsonXLeaf> { leaf ->
-                            leaf.name shouldBe JsonDocumentTranslator.ROOT_NODE_NAME
+                            leaf.name shouldBe JSON_ROOT_NODE_NAME
                             leaf.value.shouldBeInstanceOf<JsonXString> { string ->
                                 string.value.shouldBeEmpty()
                                 string.typedValue.shouldBeEmpty()
@@ -84,7 +85,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                         doc.type.name shouldBe SupportedDataType.JSON.name
                         doc.shouldBeInstanceOf<JsonXDocument>()
                         doc.root.shouldBeInstanceOf<JsonXLeaf> { leaf ->
-                            leaf.name shouldBe JsonDocumentTranslator.ROOT_NODE_NAME
+                            leaf.name shouldBe JSON_ROOT_NODE_NAME
                             leaf.value.shouldBeInstanceOf<JsonXNumber> { number ->
                                 BigDecimal(number.value) shouldBe BigDecimal("-1e15")
                                 number.typedValue shouldBe BigDecimal("-1e15")
@@ -97,7 +98,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                         doc.type.name shouldBe SupportedDataType.JSON.name
                         doc.shouldBeInstanceOf<JsonXDocument>()
                         doc.root.shouldBeInstanceOf<JsonXLeaf> { leaf ->
-                            leaf.name shouldBe JsonDocumentTranslator.ROOT_NODE_NAME
+                            leaf.name shouldBe JSON_ROOT_NODE_NAME
                             leaf.value.shouldBeInstanceOf<JsonXBoolean> { boolean ->
                                 boolean.value shouldBe true.toString()
                                 boolean.typedValue.shouldBeTrue()
@@ -110,7 +111,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                         doc.type.name shouldBe SupportedDataType.JSON.name
                         doc.shouldBeInstanceOf<JsonXDocument>()
                         doc.root.shouldBeInstanceOf<JsonXLeaf> { leaf ->
-                            leaf.name shouldBe JsonDocumentTranslator.ROOT_NODE_NAME
+                            leaf.name shouldBe JSON_ROOT_NODE_NAME
                             leaf.value.shouldBeNull()
                         }
                     }
@@ -122,7 +123,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                         doc.type.name shouldBe SupportedDataType.JSON.name
                         doc.shouldBeInstanceOf<JsonXDocument>()
                         doc.root.shouldBeInstanceOf<JsonObjectXNode> { node ->
-                            node.name shouldBe JsonDocumentTranslator.ROOT_NODE_NAME
+                            node.name shouldBe JSON_ROOT_NODE_NAME
                             node.attributes shouldHaveSize 4
                             node.attributes should { attributes ->
                                 attributes[0] should { attribute ->
@@ -160,7 +161,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                         doc.type.name shouldBe SupportedDataType.JSON.name
                         doc.shouldBeInstanceOf<JsonXDocument>()
                         doc.root.shouldBeInstanceOf<JsonArrayXNode> { node ->
-                            node.name shouldBe JsonDocumentTranslator.ROOT_NODE_NAME
+                            node.name shouldBe JSON_ROOT_NODE_NAME
                             node.attributes.shouldBeEmpty()
                             node.children shouldHaveSize 5
                             node.children.forEachIndexed { index, child ->
@@ -179,7 +180,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                         doc.type.name shouldBe SupportedDataType.JSON.name
                         doc.shouldBeInstanceOf<JsonXDocument>()
                         doc.root.shouldBeInstanceOf<JsonArrayXNode> { node ->
-                            node.name shouldBe JsonDocumentTranslator.ROOT_NODE_NAME
+                            node.name shouldBe JSON_ROOT_NODE_NAME
                             node.attributes.shouldBeEmpty()
                             node.children shouldHaveSize 5
                             node.children.forEachIndexed { index, child ->
@@ -198,7 +199,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                         doc.type.name shouldBe SupportedDataType.JSON.name
                         doc.shouldBeInstanceOf<JsonXDocument>()
                         doc.root.shouldBeInstanceOf<JsonArrayXNode> { node ->
-                            node.name shouldBe JsonDocumentTranslator.ROOT_NODE_NAME
+                            node.name shouldBe JSON_ROOT_NODE_NAME
                             node.attributes.shouldBeEmpty()
                             node.children shouldHaveSize 7
                             node.children.forEachIndexed { index, child ->
@@ -249,7 +250,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                         doc.type.name shouldBe SupportedDataType.JSON.name
                         doc.shouldBeInstanceOf<JsonXDocument>()
                         doc.root.shouldBeInstanceOf<JsonArrayXNode> { rootNode ->
-                            rootNode.name shouldBe JsonDocumentTranslator.ROOT_NODE_NAME
+                            rootNode.name shouldBe JSON_ROOT_NODE_NAME
                             rootNode.attributes.shouldBeEmpty()
                             rootNode.children.forEachIndexed { index, child ->
                                 child.shouldBeInstanceOf<JsonObjectXNode> { node ->
@@ -293,7 +294,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                         doc.type.name shouldBe SupportedDataType.JSON.name
                         doc.shouldBeInstanceOf<JsonXDocument>()
                         doc.root.shouldBeInstanceOf<JsonObjectXNode> { rootNode ->
-                            rootNode.name shouldBe JsonDocumentTranslator.ROOT_NODE_NAME
+                            rootNode.name shouldBe JSON_ROOT_NODE_NAME
                             rootNode.attributes shouldHaveSize 14
                             rootNode.attributes should { attributes ->
                                 attributes[0].shouldHaveStringValue("_id", "dsfkjlkad516ds")
@@ -373,7 +374,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                     translator.writeDocument(
                         JsonXDocument(
                             root = JsonObjectXNode(
-                                name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 attributes = emptyList(),
                                 children = emptyList()
                             )
@@ -388,7 +389,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                     translator.writeDocument(
                         JsonXDocument(
                             root = JsonArrayXNode(
-                                name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 children = emptyList()
                             )
                         ),
@@ -402,7 +403,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                     translator.writeDocument(
                         JsonXDocument(
                             root = JsonXLeaf(
-                                name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 value = JsonXString("")
                             )
                         ),
@@ -414,7 +415,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                     translator.writeDocument(
                         JsonXDocument(
                             root = JsonXLeaf(
-                                name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 value = JsonXNumber(1548)
                             )
                         ),
@@ -426,7 +427,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                     translator.writeDocument(
                         JsonXDocument(
                             root = JsonXLeaf(
-                                name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 value = JsonXBoolean(true)
                             )
                         ),
@@ -438,7 +439,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                     translator.writeDocument(
                         JsonXDocument(
                             root = JsonXLeaf(
-                                name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 value = null
                             )
                         ),
@@ -452,7 +453,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                     translator.writeDocument(
                         JsonXDocument(
                             root = JsonObjectXNode(
-                                name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 attributes = listOf(
                                     JsonXAttribute(
                                         name = "A",
@@ -484,7 +485,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                     translator.writeDocument(
                         JsonXDocument(
                             root = JsonArrayXNode(
-                                name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 children = IntRange(1, 5).map {
                                     JsonXLeaf(
                                         name = "", // it is ignored
@@ -503,7 +504,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                     translator.writeDocument(
                         JsonXDocument(
                             root = JsonArrayXNode(
-                                name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 children = CharRange('A', 'E').map {
                                     JsonXLeaf(
                                         name = "", // it is ignored
@@ -522,7 +523,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                     translator.writeDocument(
                         JsonXDocument(
                             root = JsonArrayXNode(
-                                name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 children = listOf(
                                     JsonXString("A"),
                                     JsonXNumber(1),
@@ -565,10 +566,10 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                     translator.writeDocument(
                         JsonXDocument(
                             root = JsonArrayXNode(
-                                name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 children = (1..4).map {
                                     JsonObjectXNode(
-                                        name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                        name = JSON_ROOT_NODE_NAME,
                                         attributes = listOf(
                                             JsonXAttribute(
                                                 name = "A",
@@ -602,7 +603,7 @@ internal class JsonDocumentTranslatorTest : FreeSpec() {
                     translator.writeDocument(
                         JsonXDocument(
                             root = JsonObjectXNode(
-                                name = JsonDocumentTranslator.ROOT_NODE_NAME,
+                                name = JSON_ROOT_NODE_NAME,
                                 attributes = listOf(
                                     JsonXAttribute("_id", JsonXString("dsfkjlkad516ds")),
                                     JsonXAttribute("index", JsonXNumber(1345)),

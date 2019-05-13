@@ -9,6 +9,7 @@ import org.xdef.core.Location
 import org.xdef.core.document.data.XValue
 import org.xdef.core.document.definition.*
 import org.xdef.core.toLocation
+import org.xdef.translator.JSON_ROOT_NODE_NAME
 import org.xdef.translator.definition.DefinitionTranslator
 import org.xdef.translator.definition.DefinitionTranslatorIO
 import org.xdef.translator.definition.json.model.JsonArrayXDefNode
@@ -42,17 +43,16 @@ import javax.json.JsonValue
 class JsonDefinitionTranslator : DefinitionTranslator<JsonValue>, DefinitionTranslatorIO, Logging {
 
     companion object {
-        const val ROOT_NODE_NAME = "org.xdef.root"
         const val X_SCRIPT_IDENTIFIER = "xd:script"
     }
 
     private val factory = JsonFactory()
 
-    override fun translate(dom: JsonValue) = JsonXDefDocument(this.jsonValue2XDefTree(ROOT_NODE_NAME, dom))
+    override fun translate(dom: JsonValue) = JsonXDefDocument(this.jsonValue2XDefTree(JSON_ROOT_NODE_NAME, dom))
 
     override fun translate(definition: XDefDocument): JsonValue {
         // Name was add
-        return if (ROOT_NODE_NAME == definition.root.name) {
+        return if (JSON_ROOT_NODE_NAME == definition.root.name) {
             xDefTree2JsonValue(definition.root)
         } else {
             LocalizedJsonObject(mapOf(definition.root.name to xDefTree2JsonValue(definition.root)))
