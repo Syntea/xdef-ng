@@ -233,6 +233,11 @@ class XDef(
         return to.translate(result)
     }
 
+    /**
+     * Explicit call X-definitions compile
+     *
+     * @param reporter Reporter for logging compilation fails
+     */
     @Throws(IOException::class)
     fun compile(reporter: Appendable = System.out) {
         if (pool != null) logger.info("XDPool has already been compiled")
@@ -309,7 +314,8 @@ class XDef(
     }
 
     /**
-     *
+     * Builder supports creating new X-def framework instance
+     * with initial set of X-definitions
      */
     class Builder {
 
@@ -319,9 +325,11 @@ class XDef(
         private var factory: XScriptFactory? = null
 
         /**
-         * @param type
-         * @param source
-         * @param others
+         * Add new X-definition documents
+         *
+         * @param type Type of the X-definition document e.g. XML
+         * @param source Source of X-definition
+         * @param others Other sources of X-definition of same type
          */
         fun addRuleSource(type: SupportedDataType, source: File, vararg others: File): Builder {
             files.add(Triple(type, source, null))
@@ -330,10 +338,12 @@ class XDef(
         }
 
         /**
-         * @param type
-         * @param sourceCharset
-         * @param source
-         * @param others
+         * Add new X-definition documents
+         *
+         * @param type Type of the X-definition document e.g. XML
+         * @param sourceCharset Document encoding
+         * @param source Source of X-definition
+         * @param others Other sources of X-definition of same type
          */
         fun addRuleSource(type: SupportedDataType, sourceCharset: Charset, source: File, vararg others: File): Builder {
             files.add(Triple(type, source, sourceCharset))
@@ -342,9 +352,11 @@ class XDef(
         }
 
         /**
-         * @param type
-         * @param source
-         * @param others
+         * Add new X-definition documents
+         *
+         * @param type Type of the X-definition document e.g. XML
+         * @param source Source of X-definition
+         * @param others Other sources of X-definition of same type
          */
         fun addRuleSource(type: SupportedDataType, source: URL, vararg others: URL): Builder {
             urls.add(Triple(type, source, null))
@@ -353,10 +365,12 @@ class XDef(
         }
 
         /**
-         * @param type
-         * @param sourceCharset
-         * @param source
-         * @param others
+         * Add new X-definition documents
+         *
+         * @param type Type of the X-definition document e.g. XML
+         * @param sourceCharset Document encoding
+         * @param source Source of X-definition
+         * @param others Other sources of X-definition of same type
          */
         fun addRuleSource(type: SupportedDataType, sourceCharset: Charset, source: URL, vararg others: URL): Builder {
             urls.add(Triple(type, source, sourceCharset))
@@ -365,7 +379,7 @@ class XDef(
         }
 
         /**
-         * @param factory
+         * @param factory Concrete factory implementation for creating XScript instances
          */
         fun setScriptFactory(factory: XScriptFactory): Builder {
             this.factory = factory
