@@ -1,0 +1,45 @@
+{
+  "_id": "dsfkjlkad516ds",
+  "index": 1345,
+  "guid": "a7354b5e-1547-4d80-857b-074ec78e3868",
+  "isActive": false,
+  "balance": ",790.49",
+  "picture": "http://placehold.it/32x32",
+  "age": 37,
+  "eyeColor": "green",
+  "name": {
+    "first": "Avila",
+    "last": "Johnston"
+  },
+  "company": "INDEXIA",
+  "email": "avila.johnston@indexia.io",
+  "phone": "+1 (847) 477-2146",
+  "address": "682 Elton Street, Newkirk, Nebraska, 3946",
+  "tags": [
+    "ad",
+    "duis",
+    "occaecat",
+    "incididunt",
+    "ut"
+  ],
+  "range": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "friends": [
+    {
+      "id": 0,
+      "name": "Davis Montgomery"
+    }
+  ],
+  "greeting": "Hello, Avila! You have 5 unread messages.",
+  "favoriteFruit": "strawberry"
+}

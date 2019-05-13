@@ -5,37 +5,54 @@ import org.xdef.translator.dataset.xml.*
 import org.xmlunit.assertj.XmlAssert
 
 /**
- * Integration test for reading XML to XML
+ * Integrations test for translation X-definition document from XML to XML
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 internal class FromXmlToXmlTest : BaseDefinitionTranslatorTest() {
 
     init {
-        "minimal definition" - {
-            "minimalElement" { xmlAssertEquals(minimalElement) }
-            "only text value" { xmlAssertEquals(minimalText) }
-            "with comment" { xmlAssertEquals(minimalWithComment) }
-            "empty with comment" { xmlAssertEquals(minimalEmptyWithComment) }
-            "with namespace" { xmlAssertEquals(simpleWithNamespace) }
+        "definition" - {
+            "minimal" - {
+                "empty element" { xmlAssertEquals(minimalElement) }
+                "text" { xmlAssertEquals(minimalText) }
+                "with comment" { xmlAssertEquals(minimalEmptyAndComment) }
+                "empty with comment" { xmlAssertEquals(minimalEmptyWithComment) }
+            }
+            "simple" {
+                xmlAssertEquals(simpleDefElement)
+            }
+            "complex" {
+                xmlResAssertEquals("complexDefinition")
+            }
         }
-//        "simple document" - {
-//            "object" { xmlAssertEquals(simpleObject) }
-//            "number array" { xmlAssertEquals(simpleNumberArray) }
-//            "string array" { xmlAssertEquals(simpleStringArray) }
-//            "mixed array" { xmlAssertEquals(simpleMixedArray) }
-//        }
     }
 
     private fun xmlAssertEquals(xml: String) {
-        val document = xmlTranslator.readDefinition(autoClose(xml.reader()))
-        xmlTranslator.writeDefinition(document, outputWriter)
-        println(outputWriter.toString())
+        val definition = xmlTranslator.readDefinition(autoClose(xml.reader()))
+        xmlTranslator.writeDefinition(definition, outputWriter)
+
         shouldNotThrow<AssertionError> {
-            XmlAssert.assertThat(xml)
-                .and(outputWriter.toString())
+            XmlAssert.assertThat(outputWriter.toString())
+                .and(xml)
                 .ignoreElementContentWhitespace()
                 .areSimilar()
         }
     }
+
+    private fun xmlResAssertEquals(xmlRes: String) {
+        val definition = xmlRes.resToDefinition()
+        xmlTranslator.writeDefinition(definition, outputWriter)
+
+        shouldNotThrow<AssertionError> {
+            XmlAssert.assertThat(outputWriter.toString())
+                .and(xmlRes.xmlResToString())
+                .ignoreWhitespace()
+                .areSimilar()
+        }
+    }
+
+    private fun String.xmlResToString() = "$this.xdef".resToString()
+
+    private fun String.resToDefinition() = "$this.xdef".resToDefinition(xmlTranslator)
 }

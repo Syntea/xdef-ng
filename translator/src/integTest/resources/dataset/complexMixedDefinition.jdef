@@ -1,0 +1,31 @@
+{
+  "_id": "required string(10)",
+  "index": "optional int()",
+  "guid": "string(20)",
+  "isActive": false,
+  "balance": ",790.49",
+  "picture": "required url() onTrue println(\"Yes\")",
+  "age": 37,
+  "eyeColor": "green",
+  "name": {
+    "xd:script": "required",
+    "first": "string(20)",
+    "last": "string(20)"
+  },
+  "email": "1..1 email()",
+  "phone": "required telNumber()",
+  "about": "string()",
+  "xd:script": "0..200",
+  "latitude": "optional latitude()",
+  "longitude": "optional longitude()",
+  "tags": [
+    "1..* string(10, 20) onAbsence XYZ"
+  ],
+  "friends": [
+    {
+      "id": 0,
+      "name": "Davis Montgomery",
+      "xd:script": "1..*"
+    }
+  ]
+}

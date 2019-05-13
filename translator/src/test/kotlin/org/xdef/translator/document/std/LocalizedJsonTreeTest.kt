@@ -14,7 +14,7 @@ import org.xdef.translator.document.json.std.LocalizedJsonTree
 import javax.json.JsonValue
 
 /**
- * Tests fof [LocalizedJsonTree]
+ * Tests for [LocalizedJsonTree]
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

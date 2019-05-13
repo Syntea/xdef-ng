@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:def xmlns:xd="http://www.syntea.cz/xdef/3.1"
+        xmlns:test="http://a"
+        xd:root="List"
+        xd:name="Example">
+    <List>
+        required string()
+        <Employee
+                xd:script="occurs 0..*; onAbsence outln('Not Found')"
+                test:Name="required string(1,30)"
+                FamilyName="required string(1,30)"
+                Ingoing="required string(1,30)"
+                Salary="required string(1,30)"
+                Qualification="required string(1,30)"
+                SecondaryQualification="required string(1,30)">
+            required string(10,999)
+        </Employee>
+        required string()
+    </List>
+</xd:def>
