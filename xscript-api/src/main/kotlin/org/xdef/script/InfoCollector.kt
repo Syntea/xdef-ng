@@ -1,7 +1,7 @@
 package org.xdef.script
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Special collection for holding supplemental data in processing process
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

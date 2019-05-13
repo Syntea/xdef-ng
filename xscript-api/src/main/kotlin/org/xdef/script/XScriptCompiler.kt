@@ -4,9 +4,11 @@ import org.xdef.core.XScriptInfo
 import org.xdef.core.definition.CompiledScript
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Interface contains methods for compilation phase X-definition
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
+ *
+ * @see [XScriptEnvironment]
  */
 interface XScriptCompiler : XScriptEnvironment {
 
@@ -18,16 +20,20 @@ interface XScriptCompiler : XScriptEnvironment {
     val scriptInfo: XScriptInfo
 
     /**
-     * @param script
+     * It checks syntax of [script]
      *
-     * @return
+     * @param script Script string
+     *
+     * @return `true` if syntax of [script] is valid otherwise `false`
      */
     fun validateScript(script: String): Boolean
 
     /**
-     * @param script
+     * It compiles [script]. It is transformation from string to inner form
      *
-     * @return
+     * @param script Script string
+     *
+     * @return Compiled script
      */
     fun compileScript(script: String): CompiledScript
 }
