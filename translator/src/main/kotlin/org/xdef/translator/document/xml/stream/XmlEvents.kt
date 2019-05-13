@@ -17,8 +17,8 @@ import javax.xml.stream.events.*
  * It's wrapper [StartDocument]
  */
 data class StartXmlDocumentEvent(internal val startDocument: StartDocument) : StartDocumentEvent(
-    lineNumber = startDocument.location.lineNumber,
-    columnNumber = startDocument.location.columnNumber
+    lineNumber = startDocument.location?.lineNumber ?: Location.NO_LOCATION.lineNumber,
+    columnNumber = startDocument.location?.columnNumber ?: Location.NO_LOCATION.columnNumber
 )
 
 /**
@@ -27,8 +27,8 @@ data class StartXmlDocumentEvent(internal val startDocument: StartDocument) : St
  */
 data class StartElementNodeEvent(internal val startElement: StartElement) : StartNodeEvent(
     name = startElement.name.toString(),
-    lineNumber = startElement.location.lineNumber,
-    columnNumber = startElement.location.columnNumber
+    lineNumber = startElement.location?.lineNumber ?: Location.NO_LOCATION.lineNumber,
+    columnNumber = startElement.location?.columnNumber ?: Location.NO_LOCATION.columnNumber
 )
 
 /**
@@ -37,8 +37,8 @@ data class StartElementNodeEvent(internal val startElement: StartElement) : Star
  */
 data class EndElementNodeEvent(internal val endElement: EndElement) : EndNodeEvent(
     name = endElement.name.toString(),
-    lineNumber = endElement.location.lineNumber,
-    columnNumber = endElement.location.columnNumber
+    lineNumber = endElement.location?.lineNumber ?: Location.NO_LOCATION.lineNumber,
+    columnNumber = endElement.location?.lineNumber ?: Location.NO_LOCATION.columnNumber
 )
 
 /**
@@ -47,8 +47,8 @@ data class EndElementNodeEvent(internal val endElement: EndElement) : EndNodeEve
  */
 data class XmlValueEvent(internal val data: Characters) : ValueEvent(
     value = XmlTextXValue(data.data),
-    lineNumber = data.location.lineNumber,
-    columnNumber = data.location.columnNumber
+    lineNumber = data.location?.lineNumber ?: Location.NO_LOCATION.lineNumber,
+    columnNumber = data.location?.lineNumber ?: Location.NO_LOCATION.columnNumber
 )
 
 /**
