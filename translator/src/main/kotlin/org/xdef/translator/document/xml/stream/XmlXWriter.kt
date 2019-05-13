@@ -61,7 +61,7 @@ class XmlXWriter private constructor(private val writer: XMLEventWriter) : XWrit
             is NotProcessedEvent -> writer.add(
                 when (event) {
                     is XmlNotProcessedEvent -> event.notProcessedEvent
-                    else -> TODO()
+                    else -> TODO("Not specified yet")
                 }
             )
         }

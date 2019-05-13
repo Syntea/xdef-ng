@@ -118,7 +118,7 @@ class JsonXReader private constructor(private val reader: JsonParser) : XReader 
             JsonToken.VALUE_FALSE,
             JsonToken.VALUE_NULL -> doPeekPrimitive()
             JsonToken.VALUE_EMBEDDED_OBJECT,
-            JsonToken.NOT_AVAILABLE -> TODO()
+            JsonToken.NOT_AVAILABLE -> throw IllegalStateException("JSON token Not available")
             null -> EndDocumentEvent(location)
         }.also { peekedEvent = it }
     }

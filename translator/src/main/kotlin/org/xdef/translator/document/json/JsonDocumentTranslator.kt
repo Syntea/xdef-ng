@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.core.JsonParser
 import org.apache.logging.log4j.kotlin.Logging
-import org.xdef.core.Location
 import org.xdef.core.document.data.*
 import org.xdef.translator.JSON_ROOT_NODE_NAME
 import org.xdef.translator.document.DocumentTranslator
@@ -103,8 +102,7 @@ class JsonDocumentTranslator : DocumentTranslator<JsonValue>, Logging {
                     attributes = attributes.map { (name, value) ->
                         JsonXAttribute(
                             name = name,
-                            value = jsonValue2XValue(value),
-                            location = Location.NO_LOCATION // FIXME
+                            value = jsonValue2XValue(value)
                         )
                     },
                     children = children.map { (name, child) -> jsonValue2XTree(name, child) }.toList(),

@@ -1,11 +1,5 @@
 package org.xdef.translator.dataset.json
 
-/**
- * TODO CLASS_DESCRIPTION
- *
- * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
- */
-
 const val minimalObject = "{}"
 const val minimalArray = "[]"
 const val minimalString = "\"\""
