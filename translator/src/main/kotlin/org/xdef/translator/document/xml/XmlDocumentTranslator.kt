@@ -105,8 +105,12 @@ class XmlDocumentTranslator : DocumentTranslator<Element> {
     private fun xDocument2Document(document: XDocument): Document {
         return when (document) {
             is XmlXDocument -> {
-                document.document.detachRootElement()
-                document.document.setRootElement(translate(document.root))
+                val doc = document.document
+                // Need for preserve order of top content e.g. root element and comments
+                val newContent = doc.content.map {
+                    if (it === doc.rootElement) translate(document.root) else it
+                }
+                doc.setContent(newContent)
             }
             else -> Document(translate(document.root))
         }
@@ -121,18 +125,22 @@ class XmlDocumentTranslator : DocumentTranslator<Element> {
                         val children = mutableListOf<Content>()
                         val contents = node.element.content
                         var index = 0
-                        node.children.forEach { child ->
-                            val content = when (child) {
-                                is XmlXNode -> child.element
-                                is XmlXLeaf -> child.text
-                                else -> null
-                            }
-                            if (content != null) {
-                                while (index < contents.size && content !== contents[index++]) {
-                                    children.add(contents[index - 1])
+                        if (node.children.isNotEmpty()) {
+                            node.children.forEach { child ->
+                                val content = when (child) {
+                                    is XmlXNode -> child.element
+                                    is XmlXLeaf -> child.text
+                                    else -> null
                                 }
+                                if (content != null) {
+                                    while (index < contents.size && content !== contents[index++]) {
+                                        children.add(contents[index - 1])
+                                    }
+                                }
+                                children.add(xTree2Content(child))
                             }
-                            children.add(xTree2Content(child))
+                        } else {
+                            children.addAll(contents)
                         }
                         node.element.setContent(children)
                     }
