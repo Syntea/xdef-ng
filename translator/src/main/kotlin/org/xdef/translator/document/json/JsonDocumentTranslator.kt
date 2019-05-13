@@ -4,10 +4,8 @@ import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.core.JsonParser
 import org.apache.logging.log4j.kotlin.Logging
-import org.xdef.core.Localizable
 import org.xdef.core.Location
 import org.xdef.core.document.data.*
-import org.xdef.core.toLocation
 import org.xdef.translator.JSON_ROOT_NODE_NAME
 import org.xdef.translator.document.DocumentTranslator
 import org.xdef.translator.document.DocumentTranslatorIO
@@ -15,6 +13,7 @@ import org.xdef.translator.document.json.model.*
 import org.xdef.translator.document.json.std.*
 import org.xdef.translator.document.json.stream.JsonXReader
 import org.xdef.translator.document.json.stream.JsonXWriter
+import org.xdef.translator.extractLocation
 import org.xdef.translator.indexedName
 import java.io.InputStream
 import java.io.OutputStream
@@ -189,6 +188,4 @@ class JsonDocumentTranslator : DocumentTranslator<JsonValue>, Logging {
             else -> LocalizedJsonString(value.value)
         }
     }
-
-    private fun JsonValue.extractLocation() = if (this is Localizable) toLocation() else Location.NO_LOCATION
 }
