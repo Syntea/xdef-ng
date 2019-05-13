@@ -23,9 +23,9 @@ open class XDefAttribute(
     constructor(
         name: String,
         value: XValue?,
-        allowedOccurrence: List<Occurrence>,
-        allowedEvent: List<Event>
-    ) : this(name, value, allowedOccurrence, allowedEvent, Location.NO_LOCATION)
+        allowedOccurrences: List<Occurrence>,
+        allowedEvents: List<Event>
+    ) : this(name, value, allowedOccurrences, allowedEvents, Location.NO_LOCATION)
 
     override val lineNumber = location.lineNumber
     override val columnNumber = location.columnNumber

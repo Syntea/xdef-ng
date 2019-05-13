@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.core.JsonParser
 import org.apache.logging.log4j.kotlin.Logging
-import org.xdef.core.Location
 import org.xdef.core.document.data.XValue
 import org.xdef.core.document.definition.*
 import org.xdef.core.lang.Event
@@ -129,8 +128,7 @@ class JsonDefinitionTranslator : DefinitionTranslator<JsonValue>, DefinitionTran
                             name = name,
                             value = jsonValue2XValue(value),
                             allowedOccurrences = ATTRIBUTE_ALLOWED_OCCURRENCES,
-                            allowedEvents = ATTRIBUTE_ALLOWED_EVENTS,
-                            location = Location.NO_LOCATION // FIXME
+                            allowedEvents = ATTRIBUTE_ALLOWED_EVENTS
                         )
                     },
                     children = children.map { (name, child) -> this.jsonValue2XDefTree(name, child) }.toList(),
