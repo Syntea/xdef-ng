@@ -50,8 +50,20 @@ class JsonXWriter private constructor(private val writer: JsonGenerator) : XWrit
                 writer.flush()
             }
             is StartNodeEvent -> {
+                // Add main object surround by root node (start symbol)
+                if (JsonStructure.DOCUMENT == structureStack.peek()) {
+                    writer.writeStartObject()
+                    writer.writeFieldName(event.name)
+                }
+                if (JsonStructure.OBJECT == structureStack.peek()) writer.writeFieldName(event.name)
+                writer.writeStartObject()
+                structureStack.push(JsonStructure.OBJECT)
             }
             is EndNodeEvent -> {
+                writer.writeEndObject()
+                structureStack.pop()
+                // Add main object surround by root node (end symbol)
+                if (JsonStructure.DOCUMENT == structureStack.peek()) writer.writeEndObject()
             }
             is AttributeEvent -> {
                 writer.writeFieldName(event.attribute.name)
