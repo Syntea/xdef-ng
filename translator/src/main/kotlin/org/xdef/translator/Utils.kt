@@ -5,7 +5,7 @@ import org.jdom2.located.Located
 import org.xdef.core.Location
 
 /**
- * TODO CLASS_DESCRIPTION
+ * File contains extension and util functions
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

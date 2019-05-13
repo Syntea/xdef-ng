@@ -12,11 +12,19 @@ import org.xdef.core.lang.Occurrence
 import org.xdef.translator.document.xml.model.XmlTextXValue
 
 /**
- * TODO CLASS_DESCRIPTION
+ * File contains special XML implementation for tree of X-definition
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
+
+/**
+ * Node for XML element
+ */
 class XmlXDefNode(
+    /**
+     * Reference to XML document object model ([Element])
+     * Using for preserve not processing information
+     */
     internal val element: Element,
     name: String,
     script: String?,
@@ -27,7 +35,13 @@ class XmlXDefNode(
     location: Location
 ) : XDefNode(name, script, attributes, children, allowedOccurrences, allowedEvents, location)
 
+/**
+ * Leaf for XML text value
+ */
 class XmlXDefLeaf(
+    /**
+     * Reference to XML document object model ([Text])
+     */
     internal val text: Text,
     name: String,
     value: XmlTextXValue,

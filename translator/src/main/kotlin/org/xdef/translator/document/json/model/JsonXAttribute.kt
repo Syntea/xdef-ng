@@ -5,7 +5,8 @@ import org.xdef.core.Location
 import org.xdef.core.document.data.LocalizedXAttribute
 
 /**
- * TODO CLASS_DESCRIPTION
+ * JSON attribute
+ * Using for primitive JSON value in JSON object
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

@@ -8,7 +8,7 @@ import javax.json.JsonNumber
 import javax.json.JsonValue
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Implementation of [JsonNumber] with support of localization in source data
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

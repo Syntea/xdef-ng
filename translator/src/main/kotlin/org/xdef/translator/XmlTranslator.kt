@@ -14,9 +14,12 @@ import java.io.Reader
 import java.io.Writer
 
 /**
- * TODO CLASS_DESCRIPTION
+ * XML document and X-definition document translator
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
+ *
+ * @see [XmlDocumentTranslator]
+ * @see [XmlDefinitionTranslator]
  */
 class XmlTranslator : DocumentTranslator<Element>, DefinitionTranslatorIO {
 

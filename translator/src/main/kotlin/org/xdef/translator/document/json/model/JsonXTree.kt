@@ -8,9 +8,13 @@ import org.xdef.core.document.data.XNode
 import org.xdef.core.document.data.XTree
 
 /**
- * TODO CLASS_DESCRIPTION
+ * File contains special JSON implementation for tree of document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
+ */
+
+/**
+ * Parent class defines restrict JSON structures hierarchy
  */
 sealed class JsonXNode(
     name: String,
@@ -19,6 +23,9 @@ sealed class JsonXNode(
     location: Localizable
 ) : XNode(name, attributes, children, location)
 
+/**
+ * Node for JSON object
+ */
 class JsonObjectXNode(
     name: String,
     attributes: List<XAttribute>,
@@ -34,6 +41,9 @@ class JsonObjectXNode(
     )
 }
 
+/**
+ * Node for JSON array
+ */
 class JsonArrayXNode(
     name: String,
     children: List<XTree>,
@@ -43,6 +53,9 @@ class JsonArrayXNode(
     constructor(name: String, children: List<XTree>) : this(name, children, Location.NO_LOCATION)
 }
 
+/**
+ * Leaf for JSON array value
+ */
 class JsonXLeaf(
     name: String,
     value: JsonXValue<*>?,

@@ -11,6 +11,7 @@ import org.xdef.core.document.data.XNode
 import org.xdef.core.document.data.XTree
 import org.xdef.translator.MISSING_ROOT_ELEMENT_NAME
 import org.xdef.translator.document.DocumentTranslator
+import org.xdef.translator.document.DocumentTranslatorIO
 import org.xdef.translator.document.xml.model.*
 import org.xdef.translator.document.xml.stream.XmlXReader
 import org.xdef.translator.document.xml.stream.XmlXWriter
@@ -23,9 +24,13 @@ import java.io.Reader
 import java.io.Writer
 
 /**
- * TODO CLASS_DESCRIPTION
+ * XML document translator
+ * It translates tree form of document to inner document representation and back
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
+ *
+ * @see [DocumentTranslator]
+ * @see [DocumentTranslatorIO]
  */
 class XmlDocumentTranslator : DocumentTranslator<Element> {
 

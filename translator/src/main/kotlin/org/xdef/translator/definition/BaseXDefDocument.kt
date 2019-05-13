@@ -5,7 +5,7 @@ import org.xdef.core.document.definition.XDefDocument
 import org.xdef.translator.SupportedDataType
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Base implementation of [XDefDocument]
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

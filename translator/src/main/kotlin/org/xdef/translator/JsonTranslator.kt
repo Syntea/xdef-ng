@@ -14,9 +14,12 @@ import java.io.Writer
 import javax.json.JsonValue
 
 /**
- * TODO CLASS_DESCRIPTION
+ * JSON document and X-definition document translator
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
+ *
+ * @see [JsonDocumentTranslator]
+ * @see [JsonDefinitionTranslator]
  */
 class JsonTranslator : DocumentTranslator<JsonValue>, DefinitionTranslatorIO {
 

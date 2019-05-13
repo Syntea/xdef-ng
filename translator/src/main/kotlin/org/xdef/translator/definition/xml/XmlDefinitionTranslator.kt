@@ -28,9 +28,13 @@ import java.io.Reader
 import java.io.Writer
 
 /**
- * TODO CLASS_DESCRIPTION
+ * XML X-definition document translator
+ * It translates tree form of document to inner X-definition document representation and back
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
+ *
+ * @see DefinitionTranslator
+ * @see DefinitionTranslatorIO
  */
 class XmlDefinitionTranslator : DefinitionTranslator<Element>, DefinitionTranslatorIO {
 

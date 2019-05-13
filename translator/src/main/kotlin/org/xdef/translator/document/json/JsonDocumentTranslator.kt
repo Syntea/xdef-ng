@@ -9,6 +9,7 @@ import org.xdef.core.Location
 import org.xdef.core.document.data.*
 import org.xdef.core.toLocation
 import org.xdef.translator.document.DocumentTranslator
+import org.xdef.translator.document.DocumentTranslatorIO
 import org.xdef.translator.document.json.model.*
 import org.xdef.translator.document.json.std.*
 import org.xdef.translator.document.json.stream.JsonXReader
@@ -24,9 +25,13 @@ import javax.json.JsonString
 import javax.json.JsonValue
 
 /**
- * TODO CLASS_DESCRIPTION
+ * JSON document translator
+ * It translates tree form of document to inner document representation and back
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
+ *
+ * @see [DocumentTranslator]
+ * @see [DocumentTranslatorIO]
  */
 class JsonDocumentTranslator : DocumentTranslator<JsonValue>, Logging {
 

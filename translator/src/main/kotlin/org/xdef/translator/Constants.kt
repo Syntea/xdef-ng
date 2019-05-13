@@ -1,7 +1,7 @@
 package org.xdef.translator
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Translator constants
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

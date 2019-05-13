@@ -1,9 +1,11 @@
 package org.xdef.translator
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Implementation of Translator component interface
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
+ *
+ * @see [Translator]
  */
 class TranslatorFactory : Translator {
 

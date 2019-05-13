@@ -10,12 +10,23 @@ import javax.json.JsonString
 import javax.json.JsonValue
 
 /**
- * TODO CLASS_DESCRIPTION
+ * De/serializer JSON document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
+ *
+ * @see [JsonGenerator]
+ * @see [JsonParser]
+ * @see [JsonValue]
  */
 object LocalizedJsonTree : Logging {
 
+    /**
+     * Deserialize document to tree form
+     *
+     * @param input Document parser
+     *
+     * @return `null` if document is empty else root of document tree
+     */
     fun readTree(input: JsonParser): JsonValue? {
         return if (input.nextToken() == null) {
             logger.info("Readed document is empty")
@@ -25,6 +36,12 @@ object LocalizedJsonTree : Logging {
         }
     }
 
+    /**
+     * Serialize document tree
+     *
+     * @param output Document serializer
+     * @param value Root of tree
+     */
     fun writeTree(output: JsonGenerator, value: JsonValue) {
         when (value.valueType!!) {
             JsonValue.ValueType.ARRAY -> {

@@ -6,11 +6,15 @@ import org.xdef.translator.SupportedDataType
 import org.xdef.translator.definition.BaseXDefDocument
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Implementation for XML X-definition document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 data class XmlXDefDocument(
+    /**
+     * Reference to XML document object model
+     * Using for preserve not processing information
+     */
     internal val document: Document,
     override val root: XDefTree
 ) : BaseXDefDocument(SupportedDataType.XML)

@@ -5,7 +5,7 @@ import org.xdef.translator.SupportedDataType
 import org.xdef.translator.definition.BaseXDefDocument
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Implementation for JSON X-definition document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

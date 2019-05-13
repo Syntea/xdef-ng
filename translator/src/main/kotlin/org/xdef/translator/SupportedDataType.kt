@@ -1,7 +1,7 @@
 package org.xdef.translator
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Enum contains all supported data format
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

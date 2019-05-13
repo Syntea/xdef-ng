@@ -4,13 +4,24 @@ import org.xdef.core.Localizable
 import org.xdef.core.Location
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Experimental implementation of localized JSON name
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 data class LocalizedName(
+    /**
+     * Origin name
+     */
     val name: String,
+
+    /**
+     * Number of line
+     */
     override val lineNumber: Int,
+
+    /**
+     * Number of column
+     */
     override val columnNumber: Int
 ) : CharSequence, Localizable {
 

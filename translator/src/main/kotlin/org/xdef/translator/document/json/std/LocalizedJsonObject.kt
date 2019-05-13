@@ -5,12 +5,17 @@ import org.xdef.core.Location
 import javax.json.*
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Implementation of [JsonObject] with support of localization in source data
+ * It contains basic experimental implementation of support
+ * for the localized name of object name-value pair
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 data class LocalizedJsonObject(
     private val valueMap: Map<String, JsonValue>,
+    /**
+     * Experimental support for the localized name of object name-value pair
+     */
     private val valueLocationMap: Map<String, Location>,
     override val lineNumber: Int,
     override val columnNumber: Int
@@ -99,12 +104,6 @@ data class LocalizedJsonObject(
         get() = valueMap.entries.zip(valueLocationMap.entries) { (name, value), (_, location) ->
             LocalizedName(name, location.lineNumber, location.columnNumber) to value
         }
-
-//    override fun toString(): String {
-//        val sw = StringWriter()
-//        JsonWriterImpl(sw, bufferPool).use { jw -> jw.write(this) }
-//        return sw.toString()
-//    }
 
     override fun asJsonObject() = this
 

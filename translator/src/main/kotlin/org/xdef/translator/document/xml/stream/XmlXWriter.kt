@@ -11,7 +11,7 @@ import javax.xml.stream.XMLEventWriter
 import javax.xml.stream.XMLOutputFactory
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Implementation [XWriter] for XML document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

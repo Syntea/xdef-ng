@@ -31,9 +31,13 @@ import javax.json.JsonString
 import javax.json.JsonValue
 
 /**
- * TODO CLASS_DESCRIPTION
+ * JSON X-definition document translator
+ * It translates tree form of document to inner X-definition document representation and back
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
+ *
+ * @see DefinitionTranslator
+ * @see DefinitionTranslatorIO
  */
 class JsonDefinitionTranslator : DefinitionTranslator<JsonValue>, DefinitionTranslatorIO, Logging {
 

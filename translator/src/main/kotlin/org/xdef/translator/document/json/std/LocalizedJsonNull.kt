@@ -5,7 +5,7 @@ import org.xdef.core.Location
 import javax.json.JsonValue
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Implementation of JSON null value with support of localization in source data
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

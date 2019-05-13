@@ -5,7 +5,7 @@ import org.xdef.core.Location
 import javax.json.*
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Implementation of [JsonArray] with support of localization in source data
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
@@ -105,12 +105,6 @@ data class LocalizedJsonArray(
     override fun get(index: Int): JsonValue {
         return valueList[index]
     }
-
-//    override fun toString(): String {
-//        val sw = StringWriter()
-//        JsonWriterImpl(sw, bufferPool).use { jw -> jw.write(this) }
-//        return sw.toString()
-//    }
 
     override fun asJsonArray() = this
 }

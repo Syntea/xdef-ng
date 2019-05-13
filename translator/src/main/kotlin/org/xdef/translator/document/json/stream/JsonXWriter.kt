@@ -11,7 +11,7 @@ import java.io.Writer
 import java.util.*
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Implementation [XWriter] for JSON document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

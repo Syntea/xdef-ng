@@ -9,11 +9,19 @@ import org.xdef.core.document.data.XNode
 import org.xdef.core.document.data.XTree
 
 /**
- * TODO CLASS_DESCRIPTION
+ * File contains special XML implementation for tree of document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
+
+/**
+ * Node for XML element
+ */
 class XmlXNode(
+    /**
+     * Reference to XML document object model ([Element])
+     * Using for preserve not processing information
+     */
     internal val element: Element,
     name: String,
     attributes: List<XAttribute>,
@@ -21,7 +29,13 @@ class XmlXNode(
     location: Localizable
 ) : XNode(name, attributes, children, location)
 
+/**
+ * Leaf for XML text value
+ */
 class XmlXLeaf(
+    /**
+     * Reference to XML document object model ([Text])
+     */
     internal val text: Text,
     name: String,
     value: XmlTextXValue,

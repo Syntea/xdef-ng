@@ -17,7 +17,7 @@ import java.math.BigDecimal
 import java.util.*
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Implementation [XReader] for JSON document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

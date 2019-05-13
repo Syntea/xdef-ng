@@ -3,25 +3,30 @@ package org.xdef.translator.definition
 import org.xdef.core.document.definition.XDefDocument
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Interface contains methods for translation
+ * from document object model to inner form of X-definition document and back
  *
- * @param T
+ * @param T Type of object model representation
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 interface DefinitionTranslator<T> {
 
     /**
-     * @param dom
+     * Translation from document object model to inner form of X-definition document
      *
-     * @return
+     * @param dom Document object model
+     *
+     * @return Inner form of X-definition document
      */
     fun translate(dom: T): XDefDocument
 
     /**
-     * @param definition
+     * Translation from inner form of X-definition document to document object model
      *
-     * @return
+     * @param definition Inner form of X-definition document
+     *
+     * @return Document object model
      */
     fun translate(definition: XDefDocument): T
 }

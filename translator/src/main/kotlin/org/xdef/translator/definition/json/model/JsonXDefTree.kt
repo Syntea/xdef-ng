@@ -10,13 +10,13 @@ import org.xdef.core.lang.Occurrence
 import org.xdef.translator.document.json.model.JsonXValue
 
 /**
- * TODO CLASS_DESCRIPTION
+ * File contains special JSON implementation for tree of X-definition
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 
 /**
- *
+ * Parent class defines restrict JSON structures hierarchy
  */
 sealed class JsonXDefNode(
     name: String,
@@ -29,7 +29,7 @@ sealed class JsonXDefNode(
 ) : XDefNode(name, script, attributes, children, allowedOccurrences, allowedEvents, location)
 
 /**
- *
+ * Node for JSON object
  */
 class JsonObjectXDefNode(
     name: String,
@@ -42,7 +42,7 @@ class JsonObjectXDefNode(
 ) : JsonXDefNode(name, script, attributes, children, allowedOccurrences, allowedEvents, location)
 
 /**
- *
+ * Node for JSON array
  */
 class JsonArrayXDefNode(
     name: String,
@@ -54,7 +54,7 @@ class JsonArrayXDefNode(
 ) : JsonXDefNode(name, script, emptyList(), children, allowedOccurrences, allowedEvents, location)
 
 /**
- *
+ * Leaf for JSON array value
  */
 class JsonXDefLeaf(
     name: String,

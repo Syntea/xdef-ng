@@ -6,7 +6,8 @@ import org.xdef.core.lang.Event
 import org.xdef.core.lang.Occurrence
 
 /**
- * TODO CLASS_DESCRIPTION
+ * XML X-definition attribute
+ * Reimplementation of [XDefAttribute] for XML X-definition document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

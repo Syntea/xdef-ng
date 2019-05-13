@@ -9,57 +9,96 @@ import java.io.Reader
 import java.io.Writer
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Interface contains methods for read/write and translation
+ * from document object model to inner form of document and back
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
 interface DocumentTranslatorIO {
 
     /**
-     * @param input
-     * @return
+     * Read document and translation to inner form
+     * It deduces encoding according to information in the source document
+     *
+     * @param input Stream of data
+     *
+     * @return Inner form of document
      */
     fun readDocument(input: InputStream): XDocument
 
     /**
-     * @param input
-     * @return
+     * Read document and translation to inner form
+     * It decodes document according to encoding in the [Reader]
+     * If encoding in the [Reader] not corresponds with encoding of the document, translation fails
+     *
+     * @param input Stream of data
+     *
+     * @return Inner form of document
      */
     fun readDocument(input: Reader): XDocument
 
     /**
-     * @param document
-     * @param output
+     * Translate [document] and write to the output
+     * Encoding of the output is defined the specific document format writer
+     *
+     * @param document Inner form of document
+     * @param output Stream of data
      */
     fun writeDocument(document: XDocument, output: OutputStream)
 
     /**
-     * @param document
-     * @param output
+     * Translate [document] and write to the output
+     * Encoding of the output is defined according to encoding in the [Writer]
+     * It may produce inconsistency between information about encoding and real document encoding
+     *
+     * @param document Inner form of document
+     * @param output Stream of data
      */
     fun writeDocument(document: XDocument, output: Writer)
 
     /**
-     * @param input
-     * @return
+     * Create reader for reading and translation of stream of data
+     * It deduces encoding according to information in the source document
+     *
+     * @param input Stream of data
+     *
+     * @return Translation reader
+     *
+     * @see [XReader]
      */
     fun createTranslationReader(input: InputStream): XReader
 
     /**
-     * @param input
-     * @return
+     * Create reader for reading and translation of stream of data
+     * It decodes document according to encoding in the [Reader]
+     * If encoding in the [Reader] not corresponds with encoding of the document, translation fails
+     *
+     * @param input Stream of data
+     *
+     * @return Translation reader
+     *
+     * @see [XReader]
      */
     fun createTranslationReader(input: Reader): XReader
 
     /**
-     * @param output
-     * @return
+     * Create writer for translation and writing of stream of data
+     * Encoding of the output is defined the specific document format writer
+     *
+     * @param output Stream of data
+     *
+     * @see [XWriter]
      */
     fun createTranslationWriter(output: OutputStream): XWriter
 
     /**
-     * @param output
-     * @return
+     * Create writer for translation and writing of stream of data
+     * Encoding of the output is defined according to encoding in the [Writer]
+     * It may produce inconsistency between information about encoding and real document encoding
+     *
+     * @param output Stream of data
+     *
+     * @see [XWriter]
      */
     fun createTranslationWriter(output: Writer): XWriter
 }

@@ -5,7 +5,7 @@ import org.xdef.core.Location
 import org.xdef.core.document.data.LocalizedXValue
 
 /**
- * TODO CLASS_DESCRIPTION
+ * XML text value
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */

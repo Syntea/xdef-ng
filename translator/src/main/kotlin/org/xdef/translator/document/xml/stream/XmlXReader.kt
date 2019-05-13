@@ -18,7 +18,7 @@ import javax.xml.stream.events.Attribute
 import javax.xml.stream.events.StartDocument
 
 /**
- * TODO CLASS_DESCRIPTION
+ * Implementation [XReader] for XML document
  *
  * @author [Filip Šmíd](mailto:smidfil3@fit.cvut.cz)
  */
