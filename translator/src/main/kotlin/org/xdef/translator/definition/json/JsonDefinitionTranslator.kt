@@ -50,7 +50,14 @@ class JsonDefinitionTranslator : DefinitionTranslator<JsonValue>, DefinitionTran
 
     override fun translate(dom: JsonValue) = JsonXDefDocument(this.jsonValue2XDefTree(ROOT_NODE_NAME, dom))
 
-    override fun translate(definition: XDefDocument) = xDefTree2JsonValue(definition.root)
+    override fun translate(definition: XDefDocument): JsonValue {
+        // Name was add
+        return if (ROOT_NODE_NAME == definition.root.name) {
+            xDefTree2JsonValue(definition.root)
+        } else {
+            LocalizedJsonObject(mapOf(definition.root.name to xDefTree2JsonValue(definition.root)))
+        }
+    }
 
     override fun readDefinition(input: InputStream) = readDefinition(factory.createParser(input))
 
@@ -171,16 +178,24 @@ class JsonDefinitionTranslator : DefinitionTranslator<JsonValue>, DefinitionTran
                 )
                 is JsonObjectXDefNode -> LocalizedJsonObject(
                     valueMap = (
-                            tree.attributes.map { it.name to xValue2JsonValue(it.value) } +
-                                    tree.children.map { it.name to xDefTree2JsonValue(it) }
+                            tree.attributes.map { it.name to xValue2JsonValue(it.value) }
+                                    + tree.children.map { it.name to xDefTree2JsonValue(it) }
+                                    // Add script as object attribute
+                                    + if (tree.script != null) listOf(X_SCRIPT_IDENTIFIER to LocalizedJsonString(tree.script!!)) else emptyList()
                             ).toMap()
                 )
                 else -> LocalizedJsonObject(
                     valueMap = (tree.attributes.map { it.name to xValue2JsonValue(it.value) }
+                            // Add script as object attribute
+                            + if (tree.script != null) listOf(X_SCRIPT_IDENTIFIER to LocalizedJsonString(tree.script!!)) else emptyList<Pair<String, JsonValue>>()
                             + tree.children
                         .groupBy { it.name }
                         .map { (name, children) ->
-                            name to LocalizedJsonArray(valueList = children.map { xDefTree2JsonValue(it) })
+                            if (children.size == 1) {
+                                name to xDefTree2JsonValue(children.single())
+                            } else {
+                                name to LocalizedJsonArray(valueList = children.map { xDefTree2JsonValue(it) })
+                            }
                         }).toMap()
                 )
             }

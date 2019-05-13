@@ -45,7 +45,14 @@ class JsonDocumentTranslator : DocumentTranslator<JsonValue>, Logging {
 
     override fun translate(document: XDocument) = translate(document.root)
 
-    override fun translate(documentTree: XTree) = xTree2JsonValue(documentTree)
+    override fun translate(documentTree: XTree): JsonValue {
+        // Name was add
+        return if (ROOT_NODE_NAME == documentTree.name) {
+            xTree2JsonValue(documentTree)
+        } else {
+            LocalizedJsonObject(mapOf(documentTree.name to xTree2JsonValue(documentTree)))
+        }
+    }
 
     override fun readDocument(input: InputStream) = readDocument(factory.createParser(input))
 
@@ -163,7 +170,11 @@ class JsonDocumentTranslator : DocumentTranslator<JsonValue>, Logging {
                             + tree.children
                         .groupBy { it.name }
                         .map { (name, children) ->
-                            name to LocalizedJsonArray(valueList = children.map { xTree2JsonValue(it) })
+                            if (children.size == 1) {
+                                name to xTree2JsonValue(children.single())
+                            } else {
+                                name to LocalizedJsonArray(valueList = children.map { xTree2JsonValue(it) })
+                            }
                         }).toMap()
                 )
             }
